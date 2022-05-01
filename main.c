@@ -5,7 +5,7 @@
 
 #include "servidor/servidor.c"
 #include "util/util.c"
-// #include "veiculo/veiculo.c"
+#include "veiculo/veiculo.c"
 #include "mock/mock.h"
 
 int main()
@@ -42,7 +42,11 @@ int main()
         printf("%s14- Ler todos veículos por ordem alfabética        %s\n", green, normal);
         printf("%s100- sair                                          %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                   %s\n", cyan, normal);
-        scanf("%d", &choice);
+        // scanf("%d", &choice);
+        char userInput[255];
+        fgets(userInput, 255, stdin);
+        choice = atoi(userInput);
+        printf("Prosseguindo com %d\n", choice);
         
         switch(choice){
             case 1:
