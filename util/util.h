@@ -25,6 +25,8 @@ typedef int boolean;
 #define white "\x1B[37m"
 #define normal "\x1B[0m"
 
+#define PRESS_ANY_KEY_TO_CONTINUE "Pressione qualquer tecla para continuar   .    .    ."
+
 // Enum for Workers Type
 typedef enum {
     teacher,
@@ -58,7 +60,8 @@ char* sanitizeString(char* string);
 // Returns the index of the first space it finds, if it doesn't find it returns -1
 int findSpace(bool array[], int n);
 
-void showBlockingMessage(char *msg);
+void showBlockingMessage();
+void showCustomBlockingMessage(char *msg);
 // Insert data, what kind of data and if it's mandatory
 // int getInt(bool isMandatory);
 // char *getString(bool isMandatory);

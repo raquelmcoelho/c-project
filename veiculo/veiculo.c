@@ -25,7 +25,7 @@
 
 // // função para inserir uma nova veículo
 void insertVehicle(){
-  showBlockingMessage("Inserindo veículo...");
+  showBlockingMessage();
 }
 
 // // função para alterar uma veículo existente 
