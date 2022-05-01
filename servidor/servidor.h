@@ -2,37 +2,47 @@
 
 // Obrigatórios
 // código obrigatório do servidor e não podem existir dois códigos repetidos
-int workerRegistrationNumber[MAX_WORKERS];
+char workerRegistrationNumber[MAX_WORKERS][255];
 // SIAPE obrigatório do servidor e não podem existir dois siapes repetidos
-int siape[MAX_WORKERS];
+char siape[MAX_WORKERS][255];
 // CPF obrigatório do servidor e não podem existir dois cpfs repetidos
-int cpf[MAX_WORKERS];
+char cpf[MAX_WORKERS][255];
 // nome obrigatório do servidor
-char name[MAX_WORKERS];
+char name[MAX_WORKERS][255];
 // data nascimento obrigatório do servidor 
-char birthday[MAX_WORKERS];
+char birthday[MAX_WORKERS][255];
 
 // Opcionais
 // - RG 
-int rg[MAX_WORKERS];
+char rg[MAX_WORKERS][255];
 // - endereço 
-
-char endereco[MAX_WORKERS];
+char address[MAX_WORKERS][255];
 // - salário 
-float salario[MAX_WORKERS];
+float wage[MAX_WORKERS];
+
+
+// Functions for Workers
+// - inserir novo servidor --
+bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
+// - alterar um servidor existente — 
+bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
+// - excluir um servidor — 
+bool deleteServer(int position);
+// - mostrar/imprimir dados de um servidor com base no código –
+void read(int registrationNumber); 
+// - mostrar/imprimir todos os servidores -
+void readAll();
+// - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 
+void readAllOrderByName();
 // - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
-int teacherOrderByName();
+void teacherOrderByName();
 // - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
+void techOrderByName();
 
 
 // Auxialiares
-// - gerar codigo automatico para cada novo servidor -
-int generateCode();
 // - checar se existe codidgo, cpf, siape -
-int checkExists(int value, char columnName);
-// - ordenar por nome -
-int orderList(void *list);
-// - checar se tem espaço -
-int checkHasSpace();
-// - checar campos obrigatórios e se estão preenchidas correMAX_WORKERSente-
-int checkItsComplete(int data);
+bool checkExists(int value, char columnName);
+
+// - checar campos obrigatórios e se estão preenchidas corretamente-
+bool checkItsComplete(int data);

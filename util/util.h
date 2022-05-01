@@ -44,6 +44,7 @@ void initializeArray(bool array[], int n);
 // beautifully prints an array of size n
 void printBoolArray(bool array[], int n);
 void printStringArray(char array[][255], int n);
+void printFloatArray(float array[], int n);
 
 // orders an array of size n alphabetically
 void orderArrayAlphabetically(char array[][255], int n);
@@ -56,3 +57,8 @@ char* sanitizeString(char* string);
 
 // Returns the index of the first space it finds, if it doesn't find it returns -1
 int findSpace(bool array[], int n);
+
+// Insert data, what kind of data and if it's mandatory
+// int getInt(bool isMandatory);
+// char *getString(bool isMandatory);
+// float getFloat(bool isMandatory);

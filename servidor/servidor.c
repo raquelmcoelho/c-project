@@ -1,7 +1,5 @@
 #include "servidor.h"
 
-int servidor(){
-
 
 /*
 
@@ -23,6 +21,43 @@ Módulo de Servidores -> Responsável: Raquel Maciel Coelho de Sousa
 - função geradora de códigos de identificação de servidor
 
 */
-    return 0;
-}
 
+
+// Functions for Workers
+// Functions for Workers
+// - inserir novo servidor --
+bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage){
+    int spaceIndex = findSpace(spaceWorkers, MAX_WORKERS);
+    if(spaceIndex == -1){
+        printf("Doesn't has space");
+        return false;
+    } else {
+        // Check if already exists registration number, cpf, siape and rg
+        // Check if it has data
+        strcpy(workerRegistrationNumber[spaceIndex], newWorkerRegistrationNumber);
+        strcpy(workerRegistrationNumber[spaceIndex], newWorkerRegistrationNumber);
+        strcpy(siape[spaceIndex], newSiape);
+        strcpy(cpf[spaceIndex], newCpf);
+        strcpy(name[spaceIndex], newName);
+        strcpy(birthday[spaceIndex], newBirthday);
+        strcpy(rg[spaceIndex], newRg);
+        strcpy(address[spaceIndex], newAddress);
+        wage[spaceIndex] = newWage;
+        spaceWorkers[spaceIndex] = 1;
+        return true;
+    }
+}
+// // - alterar um servidor existente — 
+// bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
+// // - excluir um servidor — 
+// bool deleteServer(int position);
+// // - mostrar/imprimir dados de um servidor com base no código –
+// void read(int registrationNumber); 
+// // - mostrar/imprimir todos os servidores -
+// void readAll();
+// // - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 
+// void readAllOrderByName();
+// // - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
+// void teacherOrderByName();
+// // - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
+// void techOrderByName();

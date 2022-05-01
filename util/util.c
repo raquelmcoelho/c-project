@@ -32,6 +32,16 @@ void printStringArray(char array[][255], int n){
     printf("]\n");
 }
 
+void printFloatArray(float array[], int n){
+    printf("[");
+    for(register int i = 0; i < n; i++){
+        printf("%.2f", array[i]);
+        if(i != n - 1){
+            printf(", ");
+        }
+    }
+    printf("]\n");
+}
 
 // orders an array of size n alphabetically
 void orderArrayAlphabetically(char array[][255], int n){
@@ -80,5 +90,6 @@ int findSpace(bool array[], int n){
             return i;
         }
     }
+    printf("Doesn't has space");
     return -1;
 }
