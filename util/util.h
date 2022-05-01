@@ -14,6 +14,17 @@ typedef int boolean;
 #define MAX_VEHICLES 20
 #define PARKING_LOT_SIZE 20
 
+
+// Colors to use in terminal
+#define red "\x1B[31m"
+#define green "\x1B[32m"
+#define yellow "\x1B[33m"
+#define blue "\x1B[34m"
+#define purple "\x1B[35m"
+#define cyan "\x1B[36m"
+#define white "\x1B[37m"
+#define normal "\x1B[0m"
+
 // Enum for Workers Type
 typedef enum {
     teacher,
