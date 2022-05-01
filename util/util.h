@@ -20,6 +20,13 @@ typedef enum {
     administrative_technician
 } TypeWorker;
 
+// Flag array for ocupation
+// 0 - it's vacant
+// 1 - it's occupied
+bool spaceVehicles[MAX_VEHICLES];
+bool spaceWorkers[MAX_WORKERS];
+
+
 // initializes an array of size n with the value false
 void initializeArray(bool array[], int n);
 
@@ -34,3 +41,14 @@ char* generateUUID();
 
 // sanitizes a string
 char* sanitizeString(char* string);
+
+// Returns the index of the first space it finds, if it doesn't find it returns -1
+int findSpace(bool array[], int n){
+    for(register int i = 0; i < n; i++){
+        if(array[i] == 0){
+            printf("\n Has a space at index: %d\n", i);
+            return i;
+        }
+    }
+    return -1;
+}
