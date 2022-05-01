@@ -46,3 +46,9 @@ int checkExists(char value[], int columnNumber);
 
 // - checar campos obrigatórios e se estão preenchidas corretamente-
 bool checkItsComplete(int data);
+
+// - print at position -
+void printAtPosition(int position);
+
+// Facade to initialize columns with null value
+void initializeColumns();
