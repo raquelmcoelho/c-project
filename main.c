@@ -1,16 +1,13 @@
 #include "servidor/servidor.h"
 // #include "veiculo/veiculo.h"
-
-#include <stdio.h>
-#include <stdlib.h>
 #include <locale.h>
-#define TAM 10
 
+int space[TAM];
+
+int findSpace();
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
-    printf("testando");
-    int space[TAM];
     int choice = 0;
     char values[TAM][255];
 
@@ -18,6 +15,7 @@ int main() {
     for(register int i = 0; i < TAM; i++){
         printf("\nantes: %d", space[i]);
         space[i] = 0;
+        strcpy(values[i], "vazio");
         printf("\ndepois: %d", space[i]);
     }
     
@@ -33,32 +31,41 @@ int main() {
         printf("\x1B[37m7- Ler todos professores por ordem alfabetica\x1B[0m\n");
         printf("8- Ler todos servidores por ordem alfabetica\n");
         printf("100- sair\n\n");
-        printf("Entre com o número da sua opção:");
+        printf("Entre com o número da sua opção:\n");
         scanf("%d", &choice);
 
+        printf("agora choice esta assim %d\n", choice);
+        
+        int spaceIndex = findSpace(); 
+        
         switch(choice){
             case 1:
-                // printf("\n\n%s, entre com uma nova string: \n", values[1]);
-                // scanf("%24s", &values[1]);
-                // printf("\n\n%s", values[1]);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                for(register int j = 0; j < TAM; j++){
-                    printf("%d\n", values[j]);
+                if(spaceIndex != -1){
+                    printf("\n\n%s, entre com uma nova string: \n", values[spaceIndex]);
+                    scanf("%255s", values[spaceIndex]);
+                    printf("\n\n agora está assim: %s\n", values[spaceIndex]);
+                    space[spaceIndex] = 1;
+                } else {
+                    printf("\nnão há espaço livre\n");
                 }
                 break;
-            case 6:
+            // case 2:
+            //     break;
+            // case 3:
+            //     break;
+            // case 4:
+            //     break;
+            case 5:
+                for(register int j = 0; j < TAM; j++){
+                    printf("%s\n", values[j]);
+                }
                 break;
-            case 7:
-                break;
-            case 8:
-                break;
+            // case 6:
+            //     break;
+            // case 7:
+            //     break;
+            // case 8:
+            //     break;
             default:
                 printf("default\n");
                 break;
@@ -67,4 +74,15 @@ int main() {
     } while (choice != 100);
 
     exit(0);
+}
+
+int findSpace(){
+    for(register int i = 0; i < TAM; i++){
+        if(space[i] == 0){
+            printf("\ntem espaço no index: %d\n", i);
+            return i;
+        }
+    }
+
+    return -1;
 }

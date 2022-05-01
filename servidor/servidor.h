@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define TAM 20
 // typedef int bool;
@@ -8,7 +9,7 @@
 typedef enum { docente, tecnico} tipoEnum;
 
 // space flag array
-bool space[TAM];
+int space[TAM];
 
 // obrigatórios
 // código obrigatório do servidor e não podem existir dois códigos repetidos
