@@ -27,7 +27,7 @@ bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char n
 // - alterar um servidor existente — 
 bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
 // - excluir um servidor — 
-bool deleteServer(int position);
+void deleteServer(int position);
 // - mostrar/imprimir dados de um servidor com base no código –
 void read(char registrationNumber[]); 
 // - mostrar/imprimir todos os servidores -
@@ -40,7 +40,7 @@ void teacherOrderByName();
 void techOrderByName();
 
 
-// Auxialiares
+// Auxiliares
 // - checar se existe codigo, cpf, siape e retornar id da position-
 int checkExists(char value[], int columnNumber);
 
@@ -51,4 +51,4 @@ bool checkItsComplete(int data);
 void printAtPosition(int position);
 
 // Facade to initialize columns with null value
-void initializeColumns();
+void initializeWorkerColumns();

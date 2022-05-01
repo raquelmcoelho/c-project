@@ -1,25 +1,5 @@
 #include "servidor.h"
 
-
-/*
-Módulo de Servidores -> Responsável: Raquel Maciel Coelho de Sousa
-- função para inserir um novo servidor 
-- função para alterar um servidor existente 
-- função para excluir um servidor 
-- função para mostrar/imprimir dados de um servidor com base no código 
-- função para mostrar/imprimir todos os servidores 
-- função para mostrar/imprimir todos os servidores em ordem alfabética pelo nome
-- função para mostrar/imprimir todos os professores em ordem alfabética pelo nome  
-- função para mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome 
-- função para verificar a unicidade do código do servidor
-- função para verificar a unicidade do CPF do servidor
-- função para verificar a unicidade do SIAPE do servidor
-- função para checar campos obrigatórios
-- funções de tratamento de dados vindos do usuário
-- função geradora de códigos de identificação de servidor
-*/
-
-
 // Functions for Workers
 // - inserir novo servidor --
 bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage){
@@ -28,27 +8,39 @@ bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char n
         printf("Doesn't has space");
         return false;
     } else {
-        // Check if already exists registration number, cpf, siape and rg
         // Check if it has data
-        strcpy(workerRegistrationNumber[spaceIndex], newWorkerRegistrationNumber);
-        strcpy(workerRegistrationNumber[spaceIndex], newWorkerRegistrationNumber);
-        strcpy(siape[spaceIndex], newSiape);
-        strcpy(cpf[spaceIndex], newCpf);
-        strcpy(name[spaceIndex], newName);
-        strcpy(birthday[spaceIndex], newBirthday);
-        strcpy(rg[spaceIndex], newRg);
-        strcpy(address[spaceIndex], newAddress);
-        wage[spaceIndex] = newWage;
+        // Check if already exists registration number, cpf, siape and rg
+        if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1) && (checkExists(newRg, 4) == -1)){
+            strcpy(workerRegistrationNumber[spaceIndex], newWorkerRegistrationNumber);
+            strcpy(workerRegistrationNumber[spaceIndex], newWorkerRegistrationNumber);
+            strcpy(siape[spaceIndex], newSiape);
+            strcpy(cpf[spaceIndex], newCpf);
+            strcpy(name[spaceIndex], newName);
+            strcpy(birthday[spaceIndex], newBirthday);
+            strcpy(rg[spaceIndex], newRg);
+            strcpy(address[spaceIndex], newAddress);
+            wage[spaceIndex] = newWage;
 
-        spaceWorkers[spaceIndex] = 1;
-        return true;
+            spaceWorkers[spaceIndex] = 1;
+            return true;
+        }
     }
 }
 
 // // - alterar um servidor existente — 
 // bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
-// // - excluir um servidor — 
-// bool deleteServer(int position);
+
+// - excluir um servidor — 
+void deleteServer(int position){
+    strcpy(workerRegistrationNumber[position], "vazio");
+    strcpy(siape[position], "vazio");
+    strcpy(cpf[position], "vazio");
+    strcpy(name[position], "vazio");
+    strcpy(birthday[position], "vazio");
+    strcpy(rg[position], "vazio");
+    strcpy(address[position], "vazio");
+    wage[position] = 0.0;
+}
 
 // - mostrar/imprimir dados de um servidor com base no código –
 void read(char registrationNumber[]){
@@ -71,14 +63,28 @@ void readAll(){
 }
 
 // // - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 
-// void readAllOrderByName();
+void readAllOrderByName(){
+    char lista[3][255] = {
+        "maciel",
+        "raquel",
+        "coelho"
+    };
+    int indexes[3];
+    orderPositionsAlphabetically(indexes, lista, 3);
+    printStringArray(lista, 3);
+    printIntArray(indexes, 3);
+}
 // // - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
-// void teacherOrderByName();
+void teacherOrderByName(){
+    
+}
 // // - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
-// void techOrderByName();
+void techOrderByName(){
+    
+}
 
 
-// Auxialiares
+// Auxiliares
 // - checar se existe codidgo, cpf, siape e retornar id da position-
 int checkExists(char value[], int columnNumber){
     switch(columnNumber){
@@ -124,13 +130,6 @@ void printAtPosition(int position){
 // Facade to initialize columns with null value
 void initializeWorkerColumns(){
     for(register int i = 0; i < MAX_WORKERS; i++){
-        strcpy(workerRegistrationNumber[i], "vazio");
-        strcpy(siape[i], "vazio");
-        strcpy(cpf[i], "vazio");
-        strcpy(name[i], "vazio");
-        strcpy(birthday[i], "vazio");
-        strcpy(rg[i], "vazio");
-        strcpy(address[i], "vazio");
-        wage[i] = 0.0;
+        deleteServer(i);
     }
 }

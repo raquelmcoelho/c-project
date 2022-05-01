@@ -43,6 +43,17 @@ void printFloatArray(float array[], int n){
     printf("]\n");
 }
 
+void printIntArray(int array[], int n){
+    printf("[");
+    for(register int i = 0; i < n; i++){
+        printf("%d", array[i]);
+        if(i != n - 1){
+            printf(", ");
+        }
+    }
+    printf("]\n");
+}
+
 // orders an array of size n alphabetically
 void orderArrayAlphabetically(char array[][255], int n){
     for(register int i = 0; i < n; i++){
@@ -56,6 +67,38 @@ void orderArrayAlphabetically(char array[][255], int n){
         }
     }
 }
+
+// order the positions of an array of strings and return an array of the properly indexes
+void orderPositionsAlphabetically(int indexes[], char array[][255], int n){
+    char copy[n][255];
+
+    // fill array with original positions index and make a copy with values
+    for(register int k = 0; k < n; k ++){
+        indexes[k] = k;
+        strcpy(copy[k], array[k]);
+    }
+
+    // find the properly order
+    for(register int i = 0; i < n; i++){
+        for(register int j = 0; j < n; j++){
+            if(strcmp(copy[i], copy[j]) < 0){
+                char temp[255];
+                int tempInt;
+
+                // order copy
+                strcpy(temp, copy[i]);
+                strcpy(copy[i], copy[j]);
+                strcpy(copy[j], temp);
+
+                // order position array
+                tempInt = indexes[i];
+                indexes[i]= indexes[j];
+                indexes[j] = tempInt;
+            }
+        }
+    }
+}
+
 
 // generates a random uuid
 char* generateUUID(){

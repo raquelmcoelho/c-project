@@ -47,9 +47,11 @@ void initializeArray(bool array[], int n);
 void printBoolArray(bool array[], int n);
 void printStringArray(char array[][255], int n);
 void printFloatArray(float array[], int n);
+void printIntArray(int array[], int n);
 
 // orders an array of size n alphabetically
 void orderArrayAlphabetically(char array[][255], int n);
+void orderPositionsAlphabetically(int indexes[], char array[][255], int n);
 
 // generates a random uuid
 char* generateUUID();
@@ -62,6 +64,7 @@ int findSpace(bool array[], int n);
 
 void showBlockingMessage();
 void showCustomBlockingMessage(char *msg);
+
 // Insert data, what kind of data and if it's mandatory
 // int getInt(bool isMandatory);
 // char *getString(bool isMandatory);
