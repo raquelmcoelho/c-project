@@ -1,37 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#define TAM 20
-// typedef int bool;
-#define false 0;
-#define true 1;
+#define MAX_WORKERS 20
+
 typedef enum { docente, tecnico} tipoEnum;
 
 // space flag array
-bool space[TAM];
+bool space[MAX_WORKERS];
 
 // obrigatórios
 // código obrigatório do servidor e não podem existir dois códigos repetidos
-int codigo[TAM];
+int codigo[MAX_WORKERS];
 // SIAPE obrigatório do servidor e não podem existir dois siapes repetidos
-int siape[TAM];
+int siape[MAX_WORKERS];
 // CPF obrigatório do servidor e não podem existir dois cpfs repetidos
-int cpf[TAM];
+int cpf[MAX_WORKERS];
 // nome obrigatório do servidor
-char nome[TAM];
+char nome[MAX_WORKERS];
 // data nascimento obrigatório do servidor 
-char dataNascimento[TAM];
+char dataNascimento[MAX_WORKERS];
 
 
 // facultativos
 // - RG 
-int rg[TAM];
+int rg[MAX_WORKERS];
 // - endereço 
-char endereco[TAM];
+char endereco[MAX_WORKERS];
 // - salário 
-float salario[TAM];
+float salario[MAX_WORKERS];
 // - tipo (docente ou técnico administrativo) 
-// enum tipoEnum[] tipo[TAM];
+// enum tipoEnum[] tipo[MAX_WORKERS];
 
 
 int main();
@@ -62,5 +61,5 @@ int checkExists(int value, char columnName);
 int orderList(void *list);
 // - checar se tem espaço -
 int checkHasSpace();
-// - checar campos obrigatórios e se estão preenchidas corretamente-
+// - checar campos obrigatórios e se estão preenchidas correMAX_WORKERSente-
 int checkItsComplete(int data);

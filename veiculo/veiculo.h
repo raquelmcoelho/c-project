@@ -1,29 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#define TAM 10
+#define MAX_VEHICLES 10
 
 // Esse header é para o módulo de veículos
 
 // Lista de flags de ocupação de vagas
 // 0 - vaga livre
 // 1 - vaga ocupada
-typedef int bool;
-#define false 0
-#define true 1
 
-bool positions[TAM];
+bool positions[MAX_VEHICLES];
 
 // Obrigatórios
 
-char vehicleRegistrationNumber[TAM][255];
-char description[TAM][255];
-char licensePlate[TAM][255];
-char brand[TAM][255];
-char model[TAM][255];
+char vehicleRegistrationNumber[MAX_VEHICLES][255];
+char description[MAX_VEHICLES][255];
+char licensePlate[MAX_VEHICLES][255];
+char brand[MAX_VEHICLES][255];
+char model[MAX_VEHICLES][255];
 
 // Opcionais
-char workerRegistrationNumber[TAM][255];
+char workerRegistrationNumber[MAX_VEHICLES][255];
 
 // função para inserir uma nova veículo
 void insertVehicle(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
@@ -52,7 +50,7 @@ bool verifyDescriptionUniqueness(char description[]);
 // função para checar campos obrigatórios
 bool verifyRequiredFields(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[]);
 
-// funções de tratamento de dados vindos do usuário
+// funções de traMAX_VEHICLESento de dados vindos do usuário
 void sanitizeVehicleRegistrationNumber(char vehicleRegistrationNumber[]);
 void sanitizeDescription(char description[]);
 void sanitizeLicensePlate(char licensePlate[]);

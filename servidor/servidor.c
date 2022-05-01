@@ -1,7 +1,6 @@
 #include "servidor.h"
-#define TAM 255
 
-int main(){
+int servidor(){
 
 
 /*

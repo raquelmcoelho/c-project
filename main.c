@@ -1,25 +1,32 @@
-#include "servidor/servidor.h"
-// #include "veiculo/veiculo.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#define TAM 10
+#include <stdbool.h>
 
+#include "servidor/servidor.c"
+#include "util/util.c"
+#include "veiculo/veiculo.c"
+
+
+// size of the parking lot
+#define SIZE_PARKING_LOT 10
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
-    printf("testando");
-    int space[TAM];
+    bool spacesOnParkingLot[SIZE_PARKING_LOT];
     int choice = 0;
-    char values[TAM][255];
+    char values[SIZE_PARKING_LOT][255];
 
     // preenchendo spaces como vazia
-    for(register int i = 0; i < TAM; i++){
-        printf("\nantes: %d", space[i]);
-        space[i] = 0;
-        printf("\ndepois: %d", space[i]);
-    }
+    // for(register int i = 0; i < SIZE_PARKING_LOT; i++){
+    //     printf("\nantes: %d", space[i]);
+    //     space[i] = 0;
+    //     printf("\ndepois: %d", space[i]);
+    // }
+
+    // make sure the parking lot starts empty
+    initializeArray(spacesOnParkingLot, SIZE_PARKING_LOT);
+    printArray(spacesOnParkingLot, SIZE_PARKING_LOT);
     
     do{
         // menu
@@ -49,8 +56,8 @@ int main() {
             case 4:
                 break;
             case 5:
-                for(register int j = 0; j < TAM; j++){
-                    printf("%d\n", values[j]);
+                for(register int j = 0; j < SIZE_PARKING_LOT; j++){
+                    printf("%s\n", values[j]);
                 }
                 break;
             case 6:
