@@ -19,6 +19,8 @@ int main() {
     initializeArray(spaceWorkers, MAX_WORKERS);
     printBoolArray(spaceVehicles, MAX_VEHICLES);
     printBoolArray(spaceWorkers, MAX_WORKERS);
+    printf("%s\n", generateUUID());
+    printf("%s\n", sanitizeString(unsanitized_string));
     
     do{
         // menu

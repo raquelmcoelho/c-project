@@ -59,18 +59,18 @@ char* generateUUID(){
     return uuid;
 }
 
-// sanitizes a string, removing all non-alphanumeric characters and spaces
+// sanitizes a string, removing all spaces and @ # $ % ^ & * ( ) - _ + = [ ] { } | \ : ; " ' < > ? /
 char* sanitizeString(char* string){
-    char* sanitizedString = malloc(sizeof(char) * 255);
+    char* sanitized = malloc(sizeof(char) * 255);
     int i = 0;
     for(register int j = 0; j < strlen(string); j++){
-        if(string[j] == ' ' || (string[j] >= 'a' && string[j] <= 'z') || (string[j] >= 'A' && string[j] <= 'Z') || (string[j] >= '0' && string[j] <= '9')){
-            sanitizedString[i] = string[j];
+        if(string[j] != ' ' && string[j] != '@' && string[j] != '#' && string[j] != '$' && string[j] != '%' && string[j] != '^' && string[j] != '&' && string[j] != '*' && string[j] != '(' && string[j] != ')' && string[j] != '-' && string[j] != '_' && string[j] != '+' && string[j] != '=' && string[j] != '[' && string[j] != ']' && string[j] != '{' && string[j] != '}' && string[j] != '|' && string[j] != '\\' && string[j] != ':' && string[j] != ';' && string[j] != '"' && string[j] != '\'' && string[j] != '<' && string[j] != '>' && string[j] != '?' && string[j] != '/'){
+            sanitized[i] = string[j];
             i++;
         }
     }
-    sanitizedString[i] = '\0';
-    return sanitizedString;
+    sanitized[i] = '\0';
+    return sanitized;
 }
 
 int findSpace(bool array[], int n){
