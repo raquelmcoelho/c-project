@@ -23,19 +23,17 @@ int main() {
     do{
         // menu
         printf("\n\nMENU\n");
-        printf("\x1B[31m1- Adicionar servidor     (inserir dados)\x1B[0m\n");
-        printf("\x1B[32m2- Alterar servidor       (inserir codigo e dados)\x1B[0m\n");
-        printf("\x1B[33m3- Deletar servidor       (inserir codigo)\x1B[0m\n");
-        printf("\x1B[34m4- Ler servidor           (inserir codigo)\x1B[0m\n");
-        printf("\x1B[35m5- Ler todos servidores\x1B[0m\n");
-        printf("\x1B[36m6- Ler todos servidores por ordem alfabetica\x1B[0m\n");
-        printf("\x1B[37m7- Ler todos professores por ordem alfabetica\x1B[0m\n");
-        printf("8- Ler todos servidores por ordem alfabetica\n");
-        printf("100- sair\n\n");
-        printf("Entre com o número da sua opção:\n");
+        printf("%s1- Adicionar servidor     (inserir dados)          %s\n", cyan, normal);
+        printf("%s2- Alterar servidor       (inserir código e dados) %s\n", cyan, normal);
+        printf("%s3- Deletar servidor       (inserir código)         %s\n", cyan, normal);
+        printf("%s4- Ler servidor           (inserir código)         %s\n", cyan, normal);
+        printf("%s5- Ler todos servidores                            %s\n", cyan, normal);
+        printf("%s6- Ler todos servidores por ordem alfabética       %s\n", cyan, normal);
+        printf("%s7- Ler todos professores por ordem alfabética      %s\n", cyan, normal);
+        printf("%s8- Ler todos servidores por ordem alfabética       %s\n", cyan, normal);
+        printf("%s100- sair                                          %s\n", cyan, normal);
+        printf("%sEntre com o número da sua opção:                   %s\n", cyan, normal);
         scanf("%d", &choice);
-
-        printf("agora choice esta assim %d\n", choice);
         
         switch(choice){
             default:
