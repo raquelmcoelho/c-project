@@ -22,7 +22,7 @@ bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char n
 // - alterar um servidor existente — 
 bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType){
     // Check if already exists registration number, cpf, siape and rg
-    if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1) && (checkExists(newRg, 4) == -1)){
+    if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1)){ //} && (checkExists(newRg, 4) == -1)){
         strcpy(workerRegistrationNumber[position], newWorkerRegistrationNumber);
         strcpy(siape[position], newSiape);
         strcpy(cpf[position], newCpf);
@@ -49,6 +49,8 @@ void deleteServer(int position){
     strcpy(address[position], "vazio");
     wage[position] = 0.0;
     type[position] = 0;
+
+    spaceWorkers[position] = 0;
 }
 
 // - mostrar/imprimir dados de um servidor com base no código –
@@ -73,21 +75,46 @@ void readAll(){
 void readAllOrderByName(){
     int indexes[MAX_WORKERS];
     orderPositionsAlphabetically(indexes, name, MAX_WORKERS);
-    printStringArray(name, MAX_WORKERS);
-    printIntArray(indexes, MAX_WORKERS);
 
     for(register int i = 0; i < MAX_WORKERS; i ++){
         printAtPosition(indexes[i]);
     }
 }
-// // - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
+// - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
 void teacherOrderByName(){
-    
+    int indexes[MAX_WORKERS];
+    orderPositionsAlphabetically(indexes, name, MAX_WORKERS);
+
+    for(register int i = 0; i < MAX_WORKERS; i ++){
+        if(type[indexes[i]] == 2){
+            printAtPosition(indexes[i]);
+        }
+    }
 }
-// // - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
-void techOrderByName(){
-    
+// - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
+void technicianOrderByName(){
+    int indexes[MAX_WORKERS];
+    orderPositionsAlphabetically(indexes, name, MAX_WORKERS);
+
+    for(register int i = 0; i < MAX_WORKERS; i ++){
+        if(type[indexes[i]] == 1){
+            printAtPosition(indexes[i]);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Auxiliares
@@ -114,37 +141,41 @@ int checkExists(char value[], int columnNumber){
 }
 
 // - checar campos obrigatórios e se estão preenchidas corretamente-
-// bool checkItsComplete(int data);
+// bool checkItsComplete(int data){
+
+// }
 
 
 // - print at position -
 void printAtPosition(int position){
-    printf(line);
+    if(spaceWorkers[position] == 1){
+        printf(line);
 
-    printf("\nPosição %d\n", position);
+        printf("\nPosição %d\n", position);
 
-    printf("Código do servidor: %s\n", workerRegistrationNumber[position]);
-    printf("SIAPE:              %s\n", siape[position]);
-    printf("CPF:                %s\n", cpf[position]);
-    printf("Nome:               %s\n", name[position]);
-    printf("Data de Nascimento: %s\n", birthday[position]);
-    printf("RG:                 %s\n", rg[position]);
-    printf("Endereço:           %s\n", address[position]);
-    printf("Salário:            %.2f\n", wage[position]);
+        printf("Código do servidor: %s\n", workerRegistrationNumber[position]);
+        printf("SIAPE:              %s\n", siape[position]);
+        printf("CPF:                %s\n", cpf[position]);
+        printf("Nome:               %s\n", name[position]);
+        printf("Data de Nascimento: %s\n", birthday[position]);
+        printf("RG:                 %s\n", rg[position]);
+        printf("Endereço:           %s\n", address[position]);
+        printf("Salário:            %.2f\n", wage[position]);
 
-    switch(type[position]){
-        case 0:
-            printf("Tipo:            Vazio");
-            break;
-        case 1:
-            printf("Tipo:            Técnico Admnistrativo");
-            break;
-        case 2:
-            printf("Tipo:            Docente");
-            break;
+        switch(type[position]){
+            case 0:
+                printf("Tipo:            Vazio");
+                break;
+            case 1:
+                printf("Tipo:            Técnico Admnistrativo");
+                break;
+            case 2:
+                printf("Tipo:            Docente");
+                break;
+        }
+
+        printf(line);
     }
-
-    printf(line);
 }
 
 

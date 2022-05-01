@@ -29,22 +29,22 @@ int main()
     {
         // menu
         printf("\n\nMENU\n");
-        printf("%s1- Adicionar servidor     (inserir dados)          %s\n", cyan, normal);
-        printf("%s2- Alterar servidor       (inserir código e dados) %s\n", cyan, normal);
-        printf("%s3- Deletar servidor       (inserir código)         %s\n", cyan, normal);
-        printf("%s4- Ler servidor           (inserir código)         %s\n", cyan, normal);
-        printf("%s5- Ler todos servidores                            %s\n", cyan, normal);
-        printf("%s6- Ler todos servidores por ordem alfabética       %s\n", cyan, normal);
-        printf("%s7- Ler todos professores por ordem alfabética      %s\n", cyan, normal);
-        printf("%s8- Ler todos servidores por ordem alfabética       %s\n", cyan, normal);
-        printf("%s9- Adicionar veículo                               %s\n", green, normal);
-        printf("%s10- Alterar veículo                                %s\n", green, normal);
-        printf("%s11- Deletar veículo                                %s\n", green, normal);
-        printf("%s12- Ler veículo                                    %s\n", green, normal);
-        printf("%s13- Ler todos veículos                             %s\n", green, normal);
-        printf("%s14- Ler todos veículos por ordem alfabética        %s\n", green, normal);
-        printf("%s100- sair                                          %s\n", red, normal);
-        printf("%sEntre com o número da sua opção:                   %s\n", cyan, normal);
+        printf("%s1- Adicionar servidor     (inserir dados)                       %s\n", cyan, normal);
+        printf("%s2- Alterar servidor       (inserir código e dados)              %s\n", cyan, normal);
+        printf("%s3- Deletar servidor       (inserir código)                      %s\n", cyan, normal);
+        printf("%s4- Ler servidor           (inserir código)                      %s\n", cyan, normal);
+        printf("%s5- Ler todos servidores                                         %s\n", cyan, normal);
+        printf("%s6- Ler todos servidores por ordem alfabética                    %s\n", cyan, normal);
+        printf("%s7- Ler todos professores por ordem alfabética                   %s\n", cyan, normal);
+        printf("%s8- Ler todos técnicos admnistrativos por ordem alfabética       %s\n", cyan, normal);
+        printf("%s9- Adicionar veículo                                            %s\n", green, normal);
+        printf("%s10- Alterar veículo                                             %s\n", green, normal);
+        printf("%s11- Deletar veículo                                             %s\n", green, normal);
+        printf("%s12- Ler veículo                                                 %s\n", green, normal);
+        printf("%s13- Ler todos veículos                                          %s\n", green, normal);
+        printf("%s14- Ler todos veículos por ordem alfabética                     %s\n", green, normal);
+        printf("%s100- sair                                                       %s\n", red, normal);
+        printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
         // scanf("%d", &choice);
         char userInput[255];
         fgets(userInput, 255, stdin);
@@ -53,7 +53,12 @@ int main()
         
         switch(choice){
             case 1:
-                insertNewServer("12345", "321", "091", "zaquel", "15/1", "2018", "rua 123", 103.4, 1);
+                insertNewServer("12345", "12345", "12345", "zaquel", "15/1", "2018", "rua 123", 103.4, 1);
+                insertNewServer("3", "3", "3", "czaquel", "15/1", "2018", "rua 123", 103.4, 1);
+                insertNewServer("4", "4", "4", "dzaquel", "15/1", "2018", "rua 123", 103.4, 0);
+                insertNewServer("1", "1", "1", "azaquel", "15/1", "2018", "rua 123", 103.4, 0);
+                insertNewServer("5", "5", "5", "fzaquel", "15/1", "2018", "rua 123", 103.4, 2);
+                insertNewServer("2", "2", "2", "bzaquel", "15/1", "2018", "rua 123", 103.4, 2);
                 break;
             case 3:
                 deleteServer(0);
@@ -66,6 +71,12 @@ int main()
                 break;
             case 6:
                 readAllOrderByName();
+                break;
+            case 7:
+                teacherOrderByName();
+                break;
+            case 8:
+                technicianOrderByName();
                 break;
             case 9:
                 insertVehicle();
