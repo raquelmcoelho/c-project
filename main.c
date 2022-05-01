@@ -8,24 +8,17 @@
 #include "veiculo/veiculo.c"
 #include "mock/mock.h"
 
-bool space[PARKING_LOT_SIZE];
-
-int findSpace();
-
-// size of the parking lot
-#define SIZE_PARKING_LOT 10
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
-    bool spacesOnParkingLot[SIZE_PARKING_LOT];
-    int choice = 0;
-    char values[SIZE_PARKING_LOT][255];
 
-    // make sure the parking lot starts empty
-    initializeArray(spacesOnParkingLot, SIZE_PARKING_LOT);
-    printBoolArray(spacesOnParkingLot, SIZE_PARKING_LOT);
-    orderArrayAlphabetically(worker_names, 10);
-    printStringArray(worker_names, 10);
+    int choice = 0;
+
+    // make sure the database starts empty
+    initializeArray(spaceVehicles, MAX_VEHICLES);
+    initializeArray(spaceWorkers, MAX_WORKERS);
+    printArray(spaceVehicles, MAX_VEHICLES);
+    printArray(spaceWorkers, MAX_WORKERS);
     
     do{
         // menu
@@ -44,53 +37,13 @@ int main() {
 
         printf("agora choice esta assim %d\n", choice);
         
-        int spaceIndex = findSpace(); 
-        
         switch(choice){
-            case 1:
-                if(spaceIndex != -1){
-                    printf("\n\n%s, entre com uma nova string: \n", values[spaceIndex]);
-                    scanf("%255s", values[spaceIndex]);
-                    printf("\n\n agora está assim: %s\n", values[spaceIndex]);
-                    space[spaceIndex] = 1;
-                } else {
-                    printf("\nnão há espaço livre\n");
-                }
-                break;
-            // case 2:
-            //     break;
-            // case 3:
-            //     break;
-            // case 4:
-            //     break;
-            case 5:
-                for(register int j = 0; j < SIZE_PARKING_LOT; j++){
-                    printf("%s\n", values[j]);
-                }
-                break;
-            // case 6:
-            //     break;
-            // case 7:
-            //     break;
-            // case 8:
-            //     break;
             default:
-                printf("default\n");
+                printf("Entrada inválida");
                 break;
         }
         system("PAUSE");
     } while (choice != 100);
 
     exit(0);
-}
-
-int findSpace(){
-    for(register int i = 0; i < PARKING_LOT_SIZE; i++){
-        if(space[i] == 0){
-            printf("\ntem espaço no index: %d\n", i);
-            return i;
-        }
-    }
-
-    return -1;
 }
