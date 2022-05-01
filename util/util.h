@@ -2,7 +2,21 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define TAM 20
+// Boolean type
+typedef int boolean;
+#define false 0
+#define true 1
+
+// Size of our hardcoded database
+#define MAX_WORKERS 20
+#define MAX_VEHICLES 20
+#define PARKING_LOT_SIZE 20
+
+// Enum for Workers Type
+typedef enum {
+    teacher,
+    administrative_technician
+} TypeWorker;
 
 // initializes an array of size n with the value false
 void initializeArray(bool array[], int n);

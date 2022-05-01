@@ -11,10 +11,6 @@
 // 1 - vaga ocupada
 
 bool positions[MAX_VEHICLES];
-
-// Obrigatórios
-
-char vehicleRegistrationNumber[MAX_VEHICLES][255];
 char description[MAX_VEHICLES][255];
 char licensePlate[MAX_VEHICLES][255];
 char brand[MAX_VEHICLES][255];

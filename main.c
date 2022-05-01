@@ -7,7 +7,7 @@
 #include "util/util.c"
 #include "veiculo/veiculo.c"
 
-bool space[TAM];
+bool space[PARKING_LOT_SIZE];
 
 int findSpace();
 
@@ -89,7 +89,7 @@ int main() {
 }
 
 int findSpace(){
-    for(register int i = 0; i < TAM; i++){
+    for(register int i = 0; i < PARKING_LOT_SIZE; i++){
         if(space[i] == 0){
             printf("\ntem espaço no index: %d\n", i);
             return i;

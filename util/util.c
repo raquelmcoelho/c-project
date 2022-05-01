@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define TAM 20
-
 // initializes an array of size n with the value false
 void initializeArray(bool* array, int n){
     for(register int i = 0; i < n; i++){
