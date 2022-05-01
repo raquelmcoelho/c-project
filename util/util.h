@@ -25,7 +25,6 @@ typedef int boolean;
 #define white "\x1B[37m"
 #define normal "\x1B[0m"
 
-#define PRESS_ANY_KEY_TO_CONTINUE "Pressione qualquer tecla para continuar   .    .    ."
 
 // Enum for Workers Type
 typedef enum {

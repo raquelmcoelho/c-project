@@ -1,6 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+
+// get a mandatory field from the user
+char* getMandatoryFieldFromUserInput(char* description){
+  char* sanitizedString;
+  do {
+    fgets(description, 255, stdin);
+    sanitizedString = removeTrailingAndLeadingSpaces(description);
+  } while (sanitizedString[0] == '\n');
+  return sanitizedString;
+}
+
+// get the vehicle description from the user
+char* getVehicleDescriptionFromUserInput(){
+  char description[255];
+  printf("Digite a descrição do veículo: ");
+  return getMandatoryFieldFromUserInput(description);
+}
+
+// get the vehicle brand from the user
+char* getVehicleBrandFromUserInput(){
+  char brand[255];
+  printf("Digite a marca do veículo: ");
+  return getMandatoryFieldFromUserInput(brand);
+}
+
+// get the vehicle license plate from the user
+char* getVehicleLicensePlateFromUserInput(){
+  char licensePlate[255];
+  printf("Digite a placa do veículo: ");
+  return getMandatoryFieldFromUserInput(licensePlate);
+}
+
+char* getVehicleModelFromUserInput(){
+  char model[255];
+  printf("Digite o modelo do veículo: ");
+  return getMandatoryFieldFromUserInput(model);
+}
+
+
+
 
 // #define TAM 10
 
@@ -25,6 +66,22 @@
 
 // // função para inserir uma nova veículo
 void insertVehicle(){
+  char* description = malloc(255 * sizeof(char));
+  char* licensePlate = malloc(255 * sizeof(char));
+  char* brand = malloc(255 * sizeof(char));
+  char* model = malloc(255 * sizeof(char));
+
+  description = getVehicleDescriptionFromUserInput();
+  licensePlate = getVehicleLicensePlateFromUserInput();
+  brand = getVehicleBrandFromUserInput();
+  model = getVehicleModelFromUserInput();
+
+  printf("Os dados coletados foram: \n");
+  printf("Descrição: %s\n", description);
+  printf("Placa: %s\n", licensePlate);
+  printf("Marca: %s\n", brand);
+  printf("Modelo: %s\n", model);
+
   showBlockingMessage();
 }
 

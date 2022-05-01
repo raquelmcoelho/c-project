@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define PRESS_ANY_KEY_TO_CONTINUE "Pressione qualquer tecla para continuar   .    .    ."
+
+
 // initializes an array of size n with the value false
 void initializeArray(bool* array, int n){
     for(register int i = 0; i < n; i++){
@@ -112,18 +115,22 @@ char* generateUUID(){
     return uuid;
 }
 
-// sanitizes a string, removing all spaces and @ # $ % ^ & * ( ) - _ + = [ ] { } | \ : ; " ' < > ? /
-char* sanitizeString(char* string){
-    char* sanitized = malloc(sizeof(char) * 255);
+// removes trailling and leading spaces from a string
+char* removeTrailingAndLeadingSpaces(char* string){
+    char* newString = malloc(sizeof(char) * 255);
     int i = 0;
-    for(register int j = 0; j < strlen(string); j++){
-        if(string[j] != ' ' && string[j] != '@' && string[j] != '#' && string[j] != '$' && string[j] != '%' && string[j] != '^' && string[j] != '&' && string[j] != '*' && string[j] != '(' && string[j] != ')' && string[j] != '-' && string[j] != '_' && string[j] != '+' && string[j] != '=' && string[j] != '[' && string[j] != ']' && string[j] != '{' && string[j] != '}' && string[j] != '|' && string[j] != '\\' && string[j] != ':' && string[j] != ';' && string[j] != '"' && string[j] != '\'' && string[j] != '<' && string[j] != '>' && string[j] != '?' && string[j] != '/'){
-            sanitized[i] = string[j];
-            i++;
-        }
+    while(string[i] == ' '){
+        i++;
     }
-    sanitized[i] = '\0';
-    return sanitized;
+    int j = 0;
+    while(string[strlen(string) - 1 - j] == ' '){
+        j++;
+    }
+    for(register int k = i; k < strlen(string) - j; k++){
+        newString[k - i] = string[k];
+    }
+    newString[strlen(string) - j] = '\0';
+    return newString;
 }
 
 int findSpace(bool array[], int n){
@@ -157,7 +164,7 @@ void showCustomBlockingMessage(char *msg)
 
 void showBlockingMessage()
 {
-	printf("\n%s\n", PRESS_ANY_KEY_TO_CONTINUE);
+	printf("%s", PRESS_ANY_KEY_TO_CONTINUE);
     getchar();
     getchar();
 }
