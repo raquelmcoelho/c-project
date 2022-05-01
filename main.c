@@ -43,14 +43,18 @@ int main()
         printf("%s100- sair                                          %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                   %s\n", cyan, normal);
         scanf("%d", &choice);
+        fflush(stdin);
 
         switch (choice)
         {
+        case 9:
+            insertVehicle();
+            break;
         default:
             printf("Entrada inválida\n");
             break;
         }
-        system("PAUSE");
+        
     } while (choice != 100);
 
     exit(0);

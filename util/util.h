@@ -56,3 +56,5 @@ char* sanitizeString(char* string);
 
 // Returns the index of the first space it finds, if it doesn't find it returns -1
 int findSpace(bool array[], int n);
+
+void showBlockingMessage(char *msg);

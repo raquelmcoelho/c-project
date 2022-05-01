@@ -15,7 +15,8 @@ char model[MAX_VEHICLES][255];
 char workerRegistrationNumber[MAX_VEHICLES][255];
 
 // função para inserir uma nova veículo
-void insertVehicle(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
+// void insertVehicle(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
+void insertVehicle();
 
 // função para alterar uma veículo existente 
 void updateVehicle(int position, char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
@@ -51,4 +52,6 @@ void sanitizeWorkerRegistrationNumber(char workerRegistrationNumber[]);
 
 // função geradora de códigos de identificação de veículos
 void generateVehicleRegistrationNumber(char vehicleRegistrationNumber[]);
+
+
 

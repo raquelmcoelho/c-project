@@ -82,3 +82,11 @@ int findSpace(bool array[], int n){
     }
     return -1;
 }
+
+void showBlockingMessage(char *msg)
+{
+    char c;
+	printf("%s\n", msg);
+    fflush(stdin);
+	scanf("%c", &c);
+}
