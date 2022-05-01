@@ -6,7 +6,7 @@
 #include "servidor/servidor.c"
 #include "util/util.c"
 #include "veiculo/veiculo.c"
-// #include "mock/mock.h"
+#include "mock/mock.h"
 
 int main()
 {
@@ -47,6 +47,20 @@ int main()
 
         switch (choice)
         {
+        case 1:
+            insertNewServer("12345", "321", "091", "raquel", "15/1", "2018", "rua 123", 103.4);
+            printStringArray(workerRegistrationNumber, MAX_WORKERS);
+            printStringArray(workerRegistrationNumber, MAX_WORKERS);
+            printStringArray(workerRegistrationNumber, MAX_WORKERS);
+            printStringArray(siape, MAX_WORKERS);
+            printStringArray(cpf, MAX_WORKERS);
+            printStringArray(name, MAX_WORKERS);
+            printStringArray(birthday, MAX_WORKERS);
+            printStringArray(rg, MAX_WORKERS);
+            printStringArray(address, MAX_WORKERS);
+            printFloatArray(wage, MAX_WORKERS);
+
+            break;
         case 9:
             insertVehicle();
             break;
@@ -54,7 +68,7 @@ int main()
             printf("Entrada inválida\n");
             break;
         }
-        
+
     } while (choice != 100);
 
     exit(0);
