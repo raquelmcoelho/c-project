@@ -17,8 +17,10 @@ int main() {
     // make sure the database starts empty
     initializeArray(spaceVehicles, MAX_VEHICLES);
     initializeArray(spaceWorkers, MAX_WORKERS);
-    printArray(spaceVehicles, MAX_VEHICLES);
-    printArray(spaceWorkers, MAX_WORKERS);
+    printBoolArray(spaceVehicles, MAX_VEHICLES);
+    printBoolArray(spaceWorkers, MAX_WORKERS);
+    printf("%s\n", generateUUID());
+    printf("%s\n", sanitizeString(unsanitized_string));
     
     do{
         // menu

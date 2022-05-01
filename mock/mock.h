@@ -12,3 +12,6 @@ char worker_names[10][255] = {
     "Rafael",
     "Ricardo"
 };
+
+// unsanitized string
+char* unsanitized_string = "  José      &&&";
