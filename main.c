@@ -6,7 +6,7 @@
 #include "servidor/servidor.c"
 #include "util/util.c"
 #include "veiculo/veiculo.c"
-#include "mock/mock.h"
+// #include "mock/mock.h"
 
 
 int main() {
@@ -17,8 +17,8 @@ int main() {
     // make sure the database starts empty
     initializeArray(spaceVehicles, MAX_VEHICLES);
     initializeArray(spaceWorkers, MAX_WORKERS);
-    printArray(spaceVehicles, MAX_VEHICLES);
-    printArray(spaceWorkers, MAX_WORKERS);
+    printBoolArray(spaceVehicles, MAX_VEHICLES);
+    printBoolArray(spaceWorkers, MAX_WORKERS);
     
     do{
         // menu
@@ -37,7 +37,7 @@ int main() {
         
         switch(choice){
             default:
-                printf("Entrada inválida");
+                printf("Entrada inválida\n");
                 break;
         }
         system("PAUSE");

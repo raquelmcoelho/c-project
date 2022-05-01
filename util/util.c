@@ -72,3 +72,13 @@ char* sanitizeString(char* string){
     sanitizedString[i] = '\0';
     return sanitizedString;
 }
+
+int findSpace(bool array[], int n){
+    for(register int i = 0; i < n; i++){
+        if(array[i] == 0){
+            printf("\n Has a space at index: %d\n", i);
+            return i;
+        }
+    }
+    return -1;
+}

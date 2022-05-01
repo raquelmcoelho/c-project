@@ -5,11 +5,6 @@
 #define MAX_VEHICLES 10
 
 // Esse header é para o módulo de veículos
-
-// Lista de flags de ocupação de vagas
-// 0 - vaga livre
-// 1 - vaga ocupada
-
 bool positions[MAX_VEHICLES];
 char description[MAX_VEHICLES][255];
 char licensePlate[MAX_VEHICLES][255];
