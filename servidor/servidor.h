@@ -2,7 +2,9 @@
 #include <stdlib.h>
 
 #define TAM 20
-typedef enum { false, true } bool;
+// typedef int bool;
+#define false 0;
+#define true 1;
 typedef enum { docente, tecnico} tipoEnum;
 
 // space flag array
