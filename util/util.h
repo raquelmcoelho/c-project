@@ -62,3 +62,6 @@ int findSpace(bool array[], int n);
 // int getInt(bool isMandatory);
 // char *getString(bool isMandatory);
 // float getFloat(bool isMandatory);
+
+// Find something in a array and return the position
+int findStringInArray(char array[][255], int n, char string[]);
