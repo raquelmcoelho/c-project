@@ -6,6 +6,7 @@
 #include "servidor/servidor.c"
 #include "util/util.c"
 #include "veiculo/veiculo.c"
+#include "mock/mock.h"
 
 bool space[PARKING_LOT_SIZE];
 
@@ -22,7 +23,9 @@ int main() {
 
     // make sure the parking lot starts empty
     initializeArray(spacesOnParkingLot, SIZE_PARKING_LOT);
-    printArray(spacesOnParkingLot, SIZE_PARKING_LOT);
+    printBoolArray(spacesOnParkingLot, SIZE_PARKING_LOT);
+    orderArrayAlphabetically(worker_names, 10);
+    printStringArray(worker_names, 10);
     
     do{
         // menu

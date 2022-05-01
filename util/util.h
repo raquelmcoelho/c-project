@@ -24,7 +24,8 @@ typedef enum {
 void initializeArray(bool array[], int n);
 
 // beautifully prints an array of size n
-void printArray(bool array[], int n);
+void printBoolArray(bool array[], int n);
+void printStringArray(char array[][255], int n);
 
 // orders an array of size n alphabetically
 void orderArrayAlphabetically(char array[][255], int n);
