@@ -19,13 +19,17 @@ char rg[MAX_WORKERS][255];
 char address[MAX_WORKERS][255];
 // - salário 
 float wage[MAX_WORKERS];
+// - tipo (docente ou técnico administrativo)
+TypeWorker type[MAX_WORKERS];
+
+
 
 
 // Functions for Workers
 // - inserir novo servidor --
-bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
+bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType);
 // - alterar um servidor existente — 
-bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage);
+bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType);
 // - excluir um servidor — 
 void deleteServer(int position);
 // - mostrar/imprimir dados de um servidor com base no código –
@@ -45,7 +49,9 @@ void techOrderByName();
 int checkExists(char value[], int columnNumber);
 
 // - checar campos obrigatórios e se estão preenchidas corretamente-
+// - as variáveis com "*" não podem estar vazios ou em branco para um funcionário.
 bool checkItsComplete(int data);
+
 
 // - print at position -
 void printAtPosition(int position);

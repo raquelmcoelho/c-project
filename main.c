@@ -53,7 +53,7 @@ int main()
         
         switch(choice){
             case 1:
-                insertNewServer("12345", "321", "091", "raquel", "15/1", "2018", "rua 123", 103.4);
+                insertNewServer("12345", "321", "091", "zaquel", "15/1", "2018", "rua 123", 103.4, 1);
                 break;
             case 3:
                 deleteServer(0);

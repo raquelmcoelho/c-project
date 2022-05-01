@@ -25,11 +25,15 @@ typedef int boolean;
 #define white "\x1B[37m"
 #define normal "\x1B[0m"
 
+// Line for output
+#define line "\n---------------------------------------------------------------\n"
+
 
 // Enum for Workers Type
 typedef enum {
-    teacher,
-    administrative_technician
+    null_type,
+    administrative_technician,
+    teacher    
 } TypeWorker;
 
 // Flag array for ocupation
