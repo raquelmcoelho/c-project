@@ -90,7 +90,18 @@ int findSpace(bool array[], int n){
             return i;
         }
     }
-    printf("Doesn't has space");
+    printf("\nDoesn't has space\n");
+    return -1;
+}
+
+int findStringInArray(char array[][255], int n, char string[]){
+    for(register int i = 0; i < n; i++){
+        if(strncmp(array[i], string, strlen(string)) == 0 ){
+            printf("\nFind something in position: %d\n", i);
+            return i;
+        }
+    }
+    printf("\nDoesn't find\n");
     return -1;
 }
 

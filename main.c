@@ -5,7 +5,7 @@
 
 #include "servidor/servidor.c"
 #include "util/util.c"
-#include "veiculo/veiculo.c"
+// #include "veiculo/veiculo.c"
 #include "mock/mock.h"
 
 int main()
@@ -19,7 +19,7 @@ int main()
     initializeArray(spaceWorkers, MAX_WORKERS);
     printBoolArray(spaceVehicles, MAX_VEHICLES);
     printBoolArray(spaceWorkers, MAX_WORKERS);
-    printf("%s\n", generateUUID());
+    // printf("%s\n", generateUUID());
     // printf("%s\n", sanitizeString(unsanitized_string));
 
     do
@@ -43,30 +43,22 @@ int main()
         printf("%s100- sair                                          %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                   %s\n", cyan, normal);
         scanf("%d", &choice);
-        fflush(stdin);
-
-        switch (choice)
-        {
-        case 1:
-            insertNewServer("12345", "321", "091", "raquel", "15/1", "2018", "rua 123", 103.4);
-            printStringArray(workerRegistrationNumber, MAX_WORKERS);
-            printStringArray(workerRegistrationNumber, MAX_WORKERS);
-            printStringArray(workerRegistrationNumber, MAX_WORKERS);
-            printStringArray(siape, MAX_WORKERS);
-            printStringArray(cpf, MAX_WORKERS);
-            printStringArray(name, MAX_WORKERS);
-            printStringArray(birthday, MAX_WORKERS);
-            printStringArray(rg, MAX_WORKERS);
-            printStringArray(address, MAX_WORKERS);
-            printFloatArray(wage, MAX_WORKERS);
-
-            break;
+        
+        switch(choice){
+            case 1:
+                insertNewServer("12345", "321", "091", "raquel", "15/1", "2018", "rua 123", 103.4);
+                readAll();
+                break;
+            case 4:
+                read("12345");
+                break;
+            default:
+                printf("Entrada inválida\n");
+                break;
         case 9:
             insertVehicle();
             break;
-        default:
-            printf("Entrada inválida\n");
-            break;
+        fflush(stdin);
         }
 
     } while (choice != 100);

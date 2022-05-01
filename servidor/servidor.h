@@ -29,7 +29,7 @@ bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape
 // - excluir um servidor — 
 bool deleteServer(int position);
 // - mostrar/imprimir dados de um servidor com base no código –
-void read(int registrationNumber); 
+void read(char registrationNumber[]); 
 // - mostrar/imprimir todos os servidores -
 void readAll();
 // - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 
@@ -41,8 +41,8 @@ void techOrderByName();
 
 
 // Auxialiares
-// - checar se existe codidgo, cpf, siape -
-bool checkExists(int value, char columnName);
+// - checar se existe codigo, cpf, siape e retornar id da position-
+int checkExists(char value[], int columnNumber);
 
 // - checar campos obrigatórios e se estão preenchidas corretamente-
 bool checkItsComplete(int data);
