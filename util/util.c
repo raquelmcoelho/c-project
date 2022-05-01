@@ -105,10 +105,17 @@ int findStringInArray(char array[][255], int n, char string[]){
     return -1;
 }
 
-void showBlockingMessage(char *msg)
+void showCustomBlockingMessage(char *msg)
 {
-    char c;
 	printf("%s\n", msg);
-    fflush(stdin);
-	scanf("%c", &c);
+    getchar();
+    getchar();
 }
+
+void showBlockingMessage()
+{
+	printf("\n%s\n", PRESS_ANY_KEY_TO_CONTINUE);
+    getchar();
+    getchar();
+}
+
