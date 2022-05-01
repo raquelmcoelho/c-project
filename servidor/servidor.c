@@ -58,26 +58,16 @@ void read(char registrationNumber[]){
     if(idWorker == -1){
         printf("\nNão conseguimos achar esse código\n");
     } else {
-        printf("Código do servidor: %s\n", workerRegistrationNumber[idWorker]);
-        printf("SIAPE:              %s\n", siape[idWorker]);
-        printf("CPF:                %s\n", cpf[idWorker]);
-        printf("Nome:               %s\n", name[idWorker]);
-        printf("Data de Nascimento: %s\n", birthday[idWorker]);
-        printf("RG:                 %s\n", rg[idWorker]);
-        printf("Endereço:           %s\n", address[idWorker]);
-        printf("Salário:            %.2f\n", wage[idWorker]);
+        printAtPosition(idWorker);
     }
 }
 // - mostrar/imprimir todos os servidores -
 void readAll(){
-    printStringArray(workerRegistrationNumber, MAX_WORKERS);
-    printStringArray(siape, MAX_WORKERS);
-    printStringArray(cpf, MAX_WORKERS);
-    printStringArray(name, MAX_WORKERS);
-    printStringArray(birthday, MAX_WORKERS);
-    printStringArray(rg, MAX_WORKERS);
-    printStringArray(address, MAX_WORKERS);
-    printFloatArray(wage, MAX_WORKERS);
+    printf("\n---------------------------------------------------------------\n");
+    for(register int i = 0; i < MAX_WORKERS; i++){
+        printAtPosition(i);
+    }
+    printf("\n---------------------------------------------------------------\n");
 }
 
 // // - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 
@@ -114,3 +104,33 @@ int checkExists(char value[], int columnNumber){
 
 // - checar campos obrigatórios e se estão preenchidas corretamente-
 // bool checkItsComplete(int data);
+
+
+// - print at position -
+void printAtPosition(int position){
+        printf("\nPosição %d\n", position);
+
+        printf("Código do servidor: %s\n", workerRegistrationNumber[position]);
+        printf("SIAPE:              %s\n", siape[position]);
+        printf("CPF:                %s\n", cpf[position]);
+        printf("Nome:               %s\n", name[position]);
+        printf("Data de Nascimento: %s\n", birthday[position]);
+        printf("RG:                 %s\n", rg[position]);
+        printf("Endereço:           %s\n", address[position]);
+        printf("Salário:            %.2f\n", wage[position]);
+}
+
+
+// Facade to initialize columns with null value
+void initializeWorkerColumns(){
+    for(register int i = 0; i < MAX_WORKERS; i++){
+        strcpy(workerRegistrationNumber[i], "vazio");
+        strcpy(siape[i], "vazio");
+        strcpy(cpf[i], "vazio");
+        strcpy(name[i], "vazio");
+        strcpy(birthday[i], "vazio");
+        strcpy(rg[i], "vazio");
+        strcpy(address[i], "vazio");
+        wage[i] = 0.0;
+    }
+}

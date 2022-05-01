@@ -19,6 +19,9 @@ int main()
     initializeArray(spaceWorkers, MAX_WORKERS);
     printBoolArray(spaceVehicles, MAX_VEHICLES);
     printBoolArray(spaceWorkers, MAX_WORKERS);
+
+    // initialize columns of each table
+    initializeWorkerColumns();
     // printf("%s\n", generateUUID());
     // printf("%s\n", sanitizeString(unsanitized_string));
 
@@ -56,15 +59,19 @@ int main()
             case 4:
                 read("12345");
                 break;
+            case 5:
+                readAll();
+                break;
             default:
                 printf("Entrada inválida\n");
                 break;
-        case 9:
-            insertVehicle();
-            break;
-        fflush(stdin);
+            case 9:
+                insertVehicle();
+                break;
         }
-
+        
+        fflush(stdin);
+        system("PAUSE");
     } while (choice != 100);
 
     exit(0);
