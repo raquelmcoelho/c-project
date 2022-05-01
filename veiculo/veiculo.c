@@ -3,86 +3,53 @@
 #include <stdbool.h>
 #include <string.h>
 
-// get a mandatory field from the user
-char* getMandatoryFieldFromUserInput(char* description){
-  char* sanitizedString;
-  do {
-    fgets(description, 255, stdin);
-    sanitizedString = removeTrailingAndLeadingSpaces(description);
-  } while (sanitizedString[0] == '\n');
-  return sanitizedString;
-}
-
-// get the vehicle description from the user
-char* getVehicleDescriptionFromUserInput(){
-  char description[255];
-  printf("Digite a descrição do veículo: ");
-  return getMandatoryFieldFromUserInput(description);
-}
-
-// get the vehicle brand from the user
-char* getVehicleBrandFromUserInput(){
-  char brand[255];
-  printf("Digite a marca do veículo: ");
-  return getMandatoryFieldFromUserInput(brand);
-}
-
-// get the vehicle license plate from the user
-char* getVehicleLicensePlateFromUserInput(){
-  char licensePlate[255];
-  printf("Digite a placa do veículo: ");
-  return getMandatoryFieldFromUserInput(licensePlate);
-}
-
-char* getVehicleModelFromUserInput(){
-  char model[255];
-  printf("Digite o modelo do veículo: ");
-  return getMandatoryFieldFromUserInput(model);
-}
+#include "user_input/user_input.c"
+#include "read/read.c"
+#include "veiculo.h" 
 
 
 
-
-// #define TAM 10
-
-// // Esse header é para o módulo de veículos
-
-// // Lista de flags de ocupação de vagas
-// // 0 - vaga livre
-// // 1 - vaga ocupada
-
-// bool positions[TAM];
-
-// // Obrigatórios
-
-// char vehicleRegistrationNumber[TAM][255];
-// char description[TAM][255];
-// char licensePlate[TAM][255];
-// char brand[TAM][255];
-// char model[TAM][255];
-
-// // Opcionais
-// char workerRegistrationNumber[TAM][255];
-
-// // função para inserir uma nova veículo
+// função para inserir um novo veículo
 void insertVehicle(){
+  // declare necessary variables
   char* description = malloc(255 * sizeof(char));
   char* licensePlate = malloc(255 * sizeof(char));
   char* brand = malloc(255 * sizeof(char));
   char* model = malloc(255 * sizeof(char));
+  char* code = malloc(255 * sizeof(char));
+  char* workerCode = malloc(255 * sizeof(char));
 
+  // get the vehicle data
+  code = generateUUID();
+  workerCode = getWorkerCodeFromUserInput();
   description = getVehicleDescriptionFromUserInput();
   licensePlate = getVehicleLicensePlateFromUserInput();
   brand = getVehicleBrandFromUserInput();
   model = getVehicleModelFromUserInput();
 
-  printf("Os dados coletados foram: \n");
-  printf("Descrição: %s\n", description);
-  printf("Placa: %s\n", licensePlate);
-  printf("Marca: %s\n", brand);
-  printf("Modelo: %s\n", model);
+  // get the first free position in the parking lot
+  int position = getFirstVacantPosition(parkingSpaces, MAX_VEHICLES);
+
+  strcpy(descriptionOfEachVehicle[position], description);
+  strcpy(licensePlateOfEachVehicle[position], licensePlate);
+  strcpy(brandOfEachVehicle[position], brand);
+  strcpy(modelOfEachVehicle[position], model);
+  strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position], workerCode);
+
+  showVehicleByPosition(position);
 
   showBlockingMessage();
+}
+
+void readVehicleByPosition(){
+  // get the position from the user
+  int position = getPositionFromUserInput();
+  // show the vehicle
+  showVehicleByPosition(position - 1);
+
+  // block the terminal, so the user can read
+  showBlockingMessage();
+
 }
 
 // // função para alterar uma veículo existente 

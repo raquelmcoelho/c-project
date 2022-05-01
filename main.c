@@ -6,6 +6,7 @@
 #include "servidor/servidor.c"
 #include "util/util.c"
 #include "veiculo/veiculo.c"
+#include "veiculo/veiculo.h"
 #include "mock/mock.h"
 
 int main()
@@ -15,9 +16,9 @@ int main()
     int choice = 0;
 
     // make sure the database starts empty
-    initializeArray(spaceVehicles, MAX_VEHICLES);
+    initializeArray(parkingSpaces, MAX_VEHICLES);
     initializeArray(spaceWorkers, MAX_WORKERS);
-    printBoolArray(spaceVehicles, MAX_VEHICLES);
+    printBoolArray(parkingSpaces, MAX_VEHICLES);
     printBoolArray(spaceWorkers, MAX_WORKERS);
 
     // initialize columns of each table
@@ -81,13 +82,15 @@ int main()
             case 9:
                 insertVehicle();
                 break;
+            case 12:
+                readVehicleByPosition();
             default:
                 printf("Entrada inválida\n");
                 break;
         }
         
         fflush(stdin);
-        system("PAUSE");
+        // system("PAUSE");
     } while (choice != 100);
 
     exit(0);

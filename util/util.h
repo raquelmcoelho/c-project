@@ -10,10 +10,13 @@ typedef int boolean;
 #define true 1
 
 // Size of our hardcoded database
+#ifndef MAX_WORKERS
 #define MAX_WORKERS 20
-#define MAX_VEHICLES 20
-#define PARKING_LOT_SIZE 20
+#endif
 
+#ifndef MAX_VEHICLES
+#define MAX_VEHICLES 20
+#endif
 
 // Colors to use in terminal
 #define red "\x1B[31m"
@@ -39,7 +42,7 @@ typedef enum {
 // Flag array for ocupation
 // 0 - it's vacant
 // 1 - it's occupied
-bool spaceVehicles[MAX_VEHICLES];
+// bool spaceVehicles[MAX_VEHICLES];
 bool spaceWorkers[MAX_WORKERS];
 
 
@@ -75,3 +78,6 @@ void showCustomBlockingMessage(char *msg);
 
 // Find something in a array and return the position
 int findStringInArray(char array[][255], int n, char string[]);
+
+// get the first vacant position in an array
+int getFirstVacantPosition(bool array[], int n);

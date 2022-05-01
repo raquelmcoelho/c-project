@@ -2,17 +2,22 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#ifndef MAX_VEHICLES 
 #define MAX_VEHICLES 10
+#endif
+
+// vagas para veículos
+bool parkingSpaces[MAX_VEHICLES];   
+
 
 // Esse header é para o módulo de veículos
-bool positions[MAX_VEHICLES];
-char description[MAX_VEHICLES][255];
-char licensePlate[MAX_VEHICLES][255];
-char brand[MAX_VEHICLES][255];
-char model[MAX_VEHICLES][255];
+char descriptionOfEachVehicle[MAX_VEHICLES][255];
+char licensePlateOfEachVehicle[MAX_VEHICLES][255];
+char brandOfEachVehicle[MAX_VEHICLES][255];
+char modelOfEachVehicle[MAX_VEHICLES][255];
 
 // Opcionais
-char workerRegistrationNumber[MAX_VEHICLES][255];
+char workerRegistrationNumberOfVehicleOfEachVehicle[MAX_VEHICLES][255];
 
 // função para inserir uma nova veículo
 // void insertVehicle(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);

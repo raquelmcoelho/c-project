@@ -166,3 +166,32 @@ void showBlockingMessage()
     getchar();
 }
 
+// get a mandatory string field from the user
+char* getMandatoryStringFieldFromUserInput(char* field){
+  char* sanitizedString;
+  do {
+    fgets(field, 255, stdin);
+    sanitizedString = removeTrailingAndLeadingSpaces(field);
+  } while (sanitizedString[0] == '\n');
+  return sanitizedString;
+}
+
+// get a mandatory integer field from the user
+int getMandatoryIntegerFieldFromUserInput(char* field){
+  int integer;
+  do {
+    fgets(field, 255, stdin);
+    integer = atoi(field);
+  } while (integer == 0);
+  return integer;
+}
+
+int getFirstVacantPosition(bool array[], int n){
+    for(register int i = 0; i < n; i++){
+        if(array[i] == false){
+            return i;
+        }
+    }
+    return -1;
+}
+
