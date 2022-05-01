@@ -2,6 +2,7 @@
 // #include "veiculo/veiculo.h"
 #include <locale.h>
 
+// space flag array
 int space[TAM];
 
 int findSpace();

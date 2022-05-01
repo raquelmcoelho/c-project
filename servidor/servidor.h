@@ -1,41 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "../utils/utils.h"
 
-#define TAM 20
-// typedef int bool;
-#define false 0;
-#define true 1;
-typedef enum { docente, tecnico} tipoEnum;
-
-// space flag array
-int space[TAM];
-
-// obrigatórios
+// Obrigatórios
 // código obrigatório do servidor e não podem existir dois códigos repetidos
-int codigo[TAM];
+int workerRegistrationNumber[TAM];
 // SIAPE obrigatório do servidor e não podem existir dois siapes repetidos
 int siape[TAM];
 // CPF obrigatório do servidor e não podem existir dois cpfs repetidos
 int cpf[TAM];
 // nome obrigatório do servidor
-char nome[TAM];
+char name[TAM];
 // data nascimento obrigatório do servidor 
-char dataNascimento[TAM];
+char birthday[TAM];
 
-
-// facultativos
+// Opcionais
 // - RG 
 int rg[TAM];
 // - endereço 
-char endereco[TAM];
+char address[TAM];
 // - salário 
-float salario[TAM];
+float wage[TAM];
 // - tipo (docente ou técnico administrativo) 
-// enum tipoEnum[] tipo[TAM];
+TypeWorker typeWorker[TAM];
 
-
-int main();
 // - inserir novo servidor --
 int insertNewServer(int data);
 // - alterar um servidor existente — 
@@ -51,7 +37,7 @@ int readAllOrderByName();
 // - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
 int teacherOrderByName();
 // - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
-int techOrderByName();
+int technicianOrderByName();
 
 
 // Auxialiares

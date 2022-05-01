@@ -1,18 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#define TAM 10
+#include "../utils/utils.h"
 
 // Esse header é para o módulo de veículos
 
 // Lista de flags de ocupação de vagas
 // 0 - vaga livre
 // 1 - vaga ocupada
-typedef int bool;
-#define false 0
-#define true 1
-
-bool positions[TAM];
+boolean positions[TAM];
 
 // Obrigatórios
 
