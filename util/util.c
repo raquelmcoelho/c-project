@@ -104,3 +104,11 @@ int findStringInArray(char array[][255], int n, char string[]){
     printf("\nDoesn't find\n");
     return -1;
 }
+
+void showBlockingMessage(char *msg)
+{
+    char c;
+	printf("%s\n", msg);
+    fflush(stdin);
+	scanf("%c", &c);
+}

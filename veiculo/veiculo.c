@@ -24,8 +24,8 @@
 // char workerRegistrationNumber[TAM][255];
 
 // // função para inserir uma nova veículo
-void insertVehicle(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]){
-  //
+void insertVehicle(){
+  showBlockingMessage("Inserindo veículo...");
 }
 
 // // função para alterar uma veículo existente 

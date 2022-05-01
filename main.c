@@ -55,8 +55,12 @@ int main()
             default:
                 printf("Entrada inválida\n");
                 break;
+        case 9:
+            insertVehicle();
+            break;
+        fflush(stdin);
         }
-        system("PAUSE");
+
     } while (choice != 100);
 
     exit(0);
