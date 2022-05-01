@@ -20,13 +20,6 @@ int main() {
     int choice = 0;
     char values[SIZE_PARKING_LOT][255];
 
-    // preenchendo spaces como vazia
-    // for(register int i = 0; i < SIZE_PARKING_LOT; i++){
-    //     printf("\nantes: %d", space[i]);
-    //     space[i] = 0;
-    //     printf("\ndepois: %d", space[i]);
-    // }
-
     // make sure the parking lot starts empty
     initializeArray(spacesOnParkingLot, SIZE_PARKING_LOT);
     printArray(spacesOnParkingLot, SIZE_PARKING_LOT);

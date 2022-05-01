@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+// String methods lib
+#include <string.h>
 
 // Boolean type
 typedef int boolean;
