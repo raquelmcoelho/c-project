@@ -8,8 +8,8 @@
 #include "veiculo/veiculo.c"
 #include "mock/mock.h"
 
-
-int main() {
+int main()
+{
     setlocale(LC_ALL, "Portuguese");
 
     int choice = 0;
@@ -20,9 +20,10 @@ int main() {
     printBoolArray(spaceVehicles, MAX_VEHICLES);
     printBoolArray(spaceWorkers, MAX_WORKERS);
     printf("%s\n", generateUUID());
-    printf("%s\n", sanitizeString(unsanitized_string));
-    
-    do{
+    // printf("%s\n", sanitizeString(unsanitized_string));
+
+    do
+    {
         // menu
         printf("\n\nMENU\n");
         printf("%s1- Adicionar servidor     (inserir dados)          %s\n", cyan, normal);
@@ -33,9 +34,16 @@ int main() {
         printf("%s6- Ler todos servidores por ordem alfabética       %s\n", cyan, normal);
         printf("%s7- Ler todos professores por ordem alfabética      %s\n", cyan, normal);
         printf("%s8- Ler todos servidores por ordem alfabética       %s\n", cyan, normal);
-        printf("%s100- sair                                          %s\n", cyan, normal);
+        printf("%s9- Adicionar veículo                               %s\n", green, normal);
+        printf("%s10- Alterar veículo                                %s\n", green, normal);
+        printf("%s11- Deletar veículo                                %s\n", green, normal);
+        printf("%s12- Ler veículo                                    %s\n", green, normal);
+        printf("%s13- Ler todos veículos                             %s\n", green, normal);
+        printf("%s14- Ler todos veículos por ordem alfabética        %s\n", green, normal);
+        printf("%s100- sair                                          %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                   %s\n", cyan, normal);
         scanf("%d", &choice);
+        {
         
         switch(choice){
             case 1:
