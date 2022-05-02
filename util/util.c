@@ -189,6 +189,14 @@ char* getMandatoryStringFieldFromUserInput(char* field){
     return sanitizedString;
 }
 
+char getMandatoryWillFieldFromUserInput(){
+    char will;
+    do {
+        will = getchar();
+    } while (will != 's' && will != 'n');
+    return will;
+}
+
 // get a mandatory integer field from the user
 int getMandatoryIntegerFieldFromUserInput(char* field){
     int integer;

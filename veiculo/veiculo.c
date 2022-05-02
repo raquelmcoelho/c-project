@@ -68,7 +68,62 @@ void readAllVehicles(){
 
 // // função para alterar uma veículo existente 
 void updateVehicle(){
-  
+  int position;
+
+  // get the position from the user
+  position = getPositionFromUserInput();
+
+  char answer;
+  printf("Deseja alterar a descrição do veículo? (s/n)\n");
+  answer = getWillFromUserInput();
+  if(answer == 's'){
+    // get the new description from the user
+    char* description = getVehicleDescriptionFromUserInput();
+    // update the description
+    strcpy(descriptionOfEachVehicle[position - 1], description);
+  }
+
+  printf("Deseja alterar a marca do veículo? (s/n)\n");
+  answer = getWillFromUserInput();
+  if(answer == 's'){
+    // get the new brand from the user
+    char* brand = getVehicleBrandFromUserInput();
+    // update the brand
+    strcpy(brandOfEachVehicle[position - 1], brand);
+  }
+
+  printf("Deseja alterar o modelo do veículo? (s/n)\n");
+  answer = getWillFromUserInput();
+  if(answer == 's'){
+    // get the new model from the user
+    char* model = getVehicleModelFromUserInput();
+    // update the model
+    strcpy(modelOfEachVehicle[position - 1], model);
+  }
+
+  printf("Deseja alterar a placa do veículo? (s/n)\n");
+  answer = getWillFromUserInput();
+  if(answer == 's'){
+    // get the new license plate from the user
+    char* licensePlate = getVehicleLicensePlateFromUserInput();
+    // update the license plate
+    strcpy(licensePlateOfEachVehicle[position - 1], licensePlate);
+  }
+
+  printf("Deseja alterar o código do trabalhador responsável pelo veículo? (s/n)\n");
+  answer = getWillFromUserInput();
+  if(answer == 's'){
+    // get the new worker code from the user
+    char* workerCode = getWorkerCodeFromUserInput();
+    // update the worker code
+    strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position - 1], workerCode);
+  }
+
+  // show the vehicle
+  showVehicleByPosition(position);
+
+  // block the terminal, so the user can read
+  showBlockingMessage();
 }
 
 

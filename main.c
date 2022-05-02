@@ -104,8 +104,8 @@ int main()
                 break;
         }
         
-        fflush(stdin);
-        showBlockingMessage();
+        // fflush(stdin);
+        // showBlockingMessage();
     } while (choice != 100);
 
     exit(0);

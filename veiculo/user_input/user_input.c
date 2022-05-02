@@ -38,3 +38,8 @@ int getPositionFromUserInput(){
   printf("Digite a posição do veículo: ");
   return getMandatoryIntegerFieldFromUserInput(position);
 }
+
+char getWillFromUserInput(){
+  char will[255];
+  return getMandatoryWillFieldFromUserInput(will);
+}
