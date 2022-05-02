@@ -22,5 +22,7 @@ password: PHOENIX4EVER
 -  👩‍💻 [@ViniciusM2](https://www.github.com/ViniciusM2)
 
 
-![raquel](authors/raquel.png)
-![menezes](authors/menezes.png)
+<!-- ![raquel](authors/raquel.png) -->
+<!-- ![menezes](authors/menezes.png) -->
+<img src="https://github.com/raquelmcoelho/c-project/blob/main/authors/menezes.png" width="30"/>
+<img src="https://github.com/raquelmcoelho/c-project/blob/main/authors/raquel.png" width="30"/>
