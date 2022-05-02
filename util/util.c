@@ -149,7 +149,8 @@ int findSpace(bool array[], int n){
 
 int findStringInArray(char array[][255], int n, char string[]){
     for(register int i = 0; i < n; i++){
-        if(strncmp(array[i], string, strlen(string)) == 0 ){
+        if(strcmp(array[i], string) == 0 ){
+            printf("copia, %d, %s, %s", i, array[i], string);
             return i;
         }
     }
