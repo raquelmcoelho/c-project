@@ -5,7 +5,7 @@
 bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType){
     int spaceIndex = findSpace(spaceWorkers, MAX_WORKERS);
     if(spaceIndex == -1){
-        printf("\nNão há espaço!\n");
+        printf("\nNão há espaço disponível!\n");
         return false;
     } else {
         // Check if it has data
@@ -13,7 +13,7 @@ bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char n
             spaceWorkers[spaceIndex] = 1;
             return true;
         } else {
-            printf("\nFALHA: Código, SIAPE, cpf ou rg repetido\n");
+            printf("\nFALHA: Código, SIAPE ou CPF repetido\n");
             return false;
         }
     }
@@ -102,16 +102,6 @@ void technicianOrderByName(){
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

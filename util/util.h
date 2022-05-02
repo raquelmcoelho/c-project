@@ -48,6 +48,9 @@ bool spaceWorkers[MAX_WORKERS];
 
 // initializes an array of size n with the value false
 void initializeBoolArray(bool array[], int n);
+void initializeIntArray(int *array, int n);
+void initializeStringArray(char array[][255], int n);
+
 
 // beautifully prints an array of size n
 void printBoolArray(bool array[], int n);
@@ -62,14 +65,30 @@ void orderPositionsAlphabetically(int indexes[], char array[][255], int n);
 // generates a random uuid
 char* generateUUID();
 
-// sanitizes a string
-char* sanitizeString(char* string);
+// removes trailling and leading spaces from a string
+char* removeTrailingAndLeadingSpaces(char* string);
 
 // Returns the index of the first space it finds, if it doesn't find it returns -1
 int findSpace(bool array[], int n);
 
-void showBlockingMessage();
+// Find something in a array and return the position
+int findStringInArray(char array[][255], int n, char string[]);
+
+// Shows a message at screen and wait the user to press some key to continue
 void showCustomBlockingMessage(char *msg);
+void showBlockingMessage();
+
+// get a mandatory string field from the user
+char* getMandatoryStringFieldFromUserInput(char* field);
+
+// get a mandatory integer field from the user
+int getMandatoryIntegerFieldFromUserInput(char* field);
+
+// get the first vacant position in an array
+int getFirstVacantPosition(bool array[], int n);
+
+// sanitizes a string
+char* sanitizeString(char* string);
 
 // Insert data, what kind of data and if it's mandatory
 // int getInt(bool isMandatory);

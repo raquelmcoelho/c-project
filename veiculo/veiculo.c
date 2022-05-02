@@ -67,11 +67,13 @@ void readAllVehicles(){
 }
 
 // // função para alterar uma veículo existente 
-void updateVehicle(){}
+void updateVehicle(){
+  
+}
 
 
 
-// // função para excluir uma veículo
+//  função para excluir uma veículo
 void deleteVehicle(){
   // get the position from the user
   int position = getPositionFromUserInput();

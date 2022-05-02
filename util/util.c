@@ -18,6 +18,12 @@ void initializeIntArray(int* array, int n){
     }
 }
 
+void initializeStringArray(char array[][255], int n){
+    for(register int i = 0; i < n; i++){
+        strcpy(array[i], "");
+    }
+}
+
 // beautifully prints an array of size n
 void printBoolArray(bool array[], int n){
     printf("[");
@@ -52,7 +58,7 @@ void printFloatArray(float array[], int n){
     printf("]\n");
 }
 
-void printIntArray(int array[], int n){
+void printIntArray(int *array, int n){
     printf("[");
     for(register int i = 0; i < n; i++){
         printf("%d", array[i]);
@@ -138,15 +144,17 @@ char* removeTrailingAndLeadingSpaces(char* string){
     return newString;
 }
 
+// Returns the index of the first space it finds, if it doesn't find it returns -1
 int findSpace(bool array[], int n){
     for(register int i = 0; i < n; i++){
-        if(array[i] == 0){
+        if(array[i] == false){
             return i;
         }
     }
     return -1;
 }
 
+// Find something in a array and return the position
 int findStringInArray(char array[][255], int n, char string[]){
     for(register int i = 0; i < n; i++){
         if(strcmp(array[i], string) == 0 ){
@@ -173,22 +181,22 @@ void showBlockingMessage()
 
 // get a mandatory string field from the user
 char* getMandatoryStringFieldFromUserInput(char* field){
-  char* sanitizedString;
-  do {
-    fgets(field, 255, stdin);
-    sanitizedString = removeTrailingAndLeadingSpaces(field);
-  } while (sanitizedString[0] == '\n');
-  return sanitizedString;
+    char* sanitizedString;
+    do {
+        fgets(field, 255, stdin);
+        sanitizedString = removeTrailingAndLeadingSpaces(field);
+    } while (sanitizedString[0] == '\n');
+    return sanitizedString;
 }
 
 // get a mandatory integer field from the user
 int getMandatoryIntegerFieldFromUserInput(char* field){
-  int integer;
-  do {
-    fgets(field, 255, stdin);
-    integer = atoi(field);
-  } while (integer == 0);
-  return integer;
+    int integer;
+    do {
+        fgets(field, 255, stdin);
+        integer = atoi(field);
+    } while (integer == 0);
+    return integer; 
 }
 
 int getFirstVacantIndex(bool array[], int n){
@@ -208,3 +216,6 @@ char* getDivider(){
     _line[255] = '\0';
     return _line;
 }
+// // sanitizes a string
+// char* sanitizeString(char* string){
+// }
