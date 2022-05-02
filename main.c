@@ -9,8 +9,7 @@
 #include "veiculo/veiculo.h"
 #include "mock/mock.h"
 
-int main()
-{
+int main(){
     setlocale(LC_ALL, "Portuguese");
 
     // integer of choice make by user from menu of options
@@ -27,8 +26,7 @@ int main()
     // printf("%s\n", generateUUID());
     // printf("%s\n", sanitizeString(unsanitized_string));
 
-    do
-    {
+    do{
         // menu of options
         printf("\n\nMENU\n");
         printf("%s1- Adicionar servidor     (inserir dados)                       %s\n", cyan, normal);

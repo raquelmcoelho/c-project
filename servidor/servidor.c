@@ -74,12 +74,12 @@ bool alterServer(int position){
 
     printf("\nCODIGO: %s", newWorkerRegistrationNumber) ;  
     printf("\nSIAPE: %s", newSiape) ;  
-    printf("CPF: %s", newCpf) ;  
-    printf("NOME: %s", newName) ;  
-    printf("ANIVERSARIO: %s", newBirthday) ;  
-    printf("RG: %s", newRg) ;  
-    printf("ENDEREÇO: %s", newAddress) ;  
-    printf("SALÁRIO: %.2f", newWage) ;  
+    printf("\nCPF: %s", newCpf) ;  
+    printf("\nNOME: %s", newName) ;  
+    printf("\nANIVERSARIO: %s", newBirthday) ;  
+    printf("\nRG: %s", newRg) ;  
+    printf("\nENDEREÇO: %s", newAddress) ;  
+    printf("\nSALÁRIO: %.2f", newWage) ;  
     printf("\nTIPO ENUM: %d", newType) ;  
 
 

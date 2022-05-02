@@ -209,19 +209,22 @@ int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]){
 // get a string field from the user
 char* getStringFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    fgets(field, 255, stdin);
+    // fgets(field, 255, stdin);
+    gets(field);
     return removeTrailingAndLeadingSpaces(field);
 }
 
 int getIntegerFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    fgets(field, 255, stdin);
+    // fgets(field, 255, stdin);
+    gets(field);
     return atoi(field); 
 }
 
 float getFloatFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    fgets(field, 255, stdin);
+    // fgets(field, 255, stdin);
+    gets(field);
     return atof(field);
     // TODO: fiz errors by \n
 }
