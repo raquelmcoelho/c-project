@@ -28,10 +28,6 @@ typedef int boolean;
 #define white "\x1B[37m"
 #define normal "\x1B[0m"
 
-// Line for output
-#define line "\n---------------------------------------------------------------\n"
-
-
 // Enum for Workers Type
 typedef enum {
     null_type,
@@ -54,7 +50,7 @@ void initializeStringArray(char array[][255], int n);
 
 // beautifully prints an array of size n
 void printBoolArray(bool array[], int n);
-void printStringArray(char** array, int n);
+void printStringArray(char array[][255], int n);
 void printFloatArray(float array[], int n);
 void printIntArray(int array[], int n);
 

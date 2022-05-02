@@ -39,15 +39,16 @@ int main()
         printf("%s6- Ler todos servidores por ordem alfabética                    %s\n", cyan, normal);
         printf("%s7- Ler todos professores por ordem alfabética                   %s\n", cyan, normal);
         printf("%s8- Ler todos técnicos admnistrativos por ordem alfabética       %s\n", cyan, normal);
-        printf("%s10- Adicionar veículo                                            %s\n", green, normal);
+        printf("%s10- Adicionar veículo                                           %s\n", green, normal);
         printf("%s11- Alterar veículo                                             %s\n", green, normal);
         printf("%s12- Deletar veículo                                             %s\n", green, normal);
         printf("%s13- Ler veículo                                                 %s\n", green, normal);
         printf("%s14- Ler todos veículos                                          %s\n", green, normal);
         printf("%s15- Ler os veículos de um servidor em ordem alfabética          %s\n", green, normal);
-        printf("%s16- Ler os veículos em ordem alfabética          %s\n", green, normal);
+        printf("%s16- Ler os veículos em ordem alfabética                         %s\n", green, normal);
         printf("%s100- sair                                                       %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
+
         char userInput[255];
         fgets(userInput, 255, stdin);
         choice = atoi(userInput);
@@ -57,13 +58,13 @@ int main()
                 insertNewServer();
                 break;
             case 2:
-                alterServer(1);
+                alterServer(-1);
                 break;
             case 3:
-                deleteServer(1);
+                deleteServer(-1);
                 break;
             case 4:
-                read("123");
+                read();
                 break;
             case 5:
                 readAll();
@@ -98,6 +99,8 @@ int main()
             case 16:
                 readVehiclesInAlphabeticalOrder();
                 break;
+            case 100:
+                printf("\n%sAté a próxima ☻♥%s\n", yellow, normal);
             default:
                 printf("Entrada inválida\n");
                 break;

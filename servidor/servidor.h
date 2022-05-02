@@ -33,7 +33,7 @@ bool alterServer(int position);
 // - excluir um servidor — 
 void deleteServer(int position);
 // - mostrar/imprimir dados de um servidor com base no código –
-void read(char registrationNumber[]); 
+void read(); 
 // - mostrar/imprimir todos os servidores -
 void readAll();
 // - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 

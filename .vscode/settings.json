@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "util.h": "c"
+        "util.h": "c",
+        "stdbool.h": "c",
+        "veiculo.h": "c"
     }
 }

@@ -9,9 +9,7 @@ bool insertNewServer(){
         printf("\nNão há espaço disponível!\n");
         return false;
     } else {
-        // Check if it has data
-        if(alterServer(spaceIndex)){
-            spaceWorkers[spaceIndex] = 1;
+        if(alterServer(spaceIndex)){            
             return true;
         } else {
             return false;
@@ -33,22 +31,22 @@ bool alterServer(int position){
     char newAddress[255];
     float newWage;
     TypeWorker newType;
-
+    
     strcpy(newWorkerRegistrationNumber, generateUUID());
+    char myVar[255];
+    strcpy(myVar, "");
+    strcpy(newSiape, getMandatoryStringFieldFromUserInput(myVar, "Insira número SIAPE:"));
+    strcpy(newCpf, getMandatoryStringFieldFromUserInput(myVar, "Insira seu número de CPF:"));
+    strcpy(newName, getMandatoryStringFieldFromUserInput(myVar, "Insira seu Nome:"));
+    strcpy(newBirthday, getMandatoryStringFieldFromUserInput(myVar, "Insira sua data de aniversário"));
+    strcpy(newRg, getStringFieldFromUserInput(myVar, "(opcional) Insira seu número de RG"));
+    strcpy(newAddress, getStringFieldFromUserInput(myVar, "(opcional) Insira seu endereço"));
 
-    strcpy(newSiape, getMandatoryStringFieldFromUserInput(siape, "Insira número SIAPE:"));
-    strcpy(newCpf, getMandatoryStringFieldFromUserInput(cpf, "Insira seu número de CPF:"));
-    strcpy(newName, getMandatoryStringFieldFromUserInput(name, "Insira seu Nome:"));
-    strcpy(newBirthday, getMandatoryStringFieldFromUserInput(birthday, "Insira sua data de aniversário"));
+    newWage = getFloatFieldFromUserInput(myVar, "(opcional) Insira seu salário");
 
-
-    strcpy(newRg, getMandatoryStringFieldFromUserInput(rg, "(opcional) Insira seu número de RG"));
-    strcpy(newAddress, getMandatoryStringFieldFromUserInput(address, "(opcional) Insira seu endereço"));
-    newWage = getFloatFieldFromUserInput(wage, "(opcional) Insira seu salário");
-
-    int myVar = 0;
-    myVar = getIntegerFieldFromUserInput(type, "(opcional) Insira seu tipo: \n0 - Nada\n 1- Docente\n 2- Técnico Admnistrativo\nResposta:");
-    switch(myVar){
+    int typeChoosen = 0;
+    typeChoosen = getIntegerFieldFromUserInput(myVar, "(opcional) Insira seu tipo: \n 0 - Nada\n 1- Docente\n 2- Técnico Admnistrativo\nResposta:");
+    switch(typeChoosen){
         case 0:
             newType = 0;
             break;
@@ -63,7 +61,18 @@ bool alterServer(int position){
             break;
     }
 
-    printf("CODIGO: %s", newWorkerRegistrationNumber) ;  
+    printStringArray(workerRegistrationNumber, MAX_WORKERS);
+    printStringArray(siape, MAX_WORKERS);
+    printStringArray(cpf, MAX_WORKERS);
+    printStringArray(name, MAX_WORKERS);
+    printStringArray(birthday, MAX_WORKERS);
+    printStringArray(rg, MAX_WORKERS);
+    printStringArray(address, MAX_WORKERS);
+    printIntArray(wage, MAX_WORKERS);
+    printIntArray(type, MAX_WORKERS);
+    printBoolArray(spaceWorkers, MAX_WORKERS);
+
+    printf("\nCODIGO: %s", newWorkerRegistrationNumber) ;  
     printf("\nSIAPE: %s", newSiape) ;  
     printf("CPF: %s", newCpf) ;  
     printf("NOME: %s", newName) ;  
@@ -73,10 +82,17 @@ bool alterServer(int position){
     printf("SALÁRIO: %.2f", newWage) ;  
     printf("\nTIPO ENUM: %d", newType) ;  
 
-    // TODO: retirar \n no fgets()
 
     // Check if already exists registration number, cpf, siape and rg
     if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1)){ //} && (checkExists(newRg, 4) == -1)){
+        if(position == -1){
+            char positionChar[255];
+            do {
+                position = getMandatoryIntegerFieldFromUserInput(positionChar, "Insira a posição desejada para armazenar os dados [1 a 20]:") - 1;
+                printf("\nPOSICAO: %d\n", position);
+            } while (!(position < MAX_WORKERS && position >= 0));
+        } 
+
         strcpy(workerRegistrationNumber[position], newWorkerRegistrationNumber);
         strcpy(siape[position], newSiape);
         strcpy(cpf[position], newCpf);
@@ -87,15 +103,24 @@ bool alterServer(int position){
         wage[position] = newWage;
         type[position] = newType;
 
+        spaceWorkers[position] = 1;
         return true;
     } else {
-        printf("\nFALHA: Código, SIAPE ou CPF repetido\n");
+        printf("\nFALHA: Código Gerado, SIAPE ou CPF repetido\n");
         return false;
     }
 }
 
 // - excluir um servidor — 
 void deleteServer(int position){
+    if(position == -1){
+        char positionChar[255];
+        do {
+            position = getMandatoryIntegerFieldFromUserInput(positionChar, "Insira a posição desejada para deletar os dados [1 a 20]:") - 1;
+            printf("%d", position);
+        } while (!(position < MAX_WORKERS && position >= 0));
+    } 
+
     strcpy(workerRegistrationNumber[position], "vazio");
     strcpy(siape[position], "vazio");
     strcpy(cpf[position], "vazio");
@@ -110,8 +135,11 @@ void deleteServer(int position){
 }
 
 // - mostrar/imprimir dados de um servidor com base no código –
-void read(char registrationNumber[]){
-    printf("\nServidor de código: %s\n", registrationNumber);
+void read(){
+    char registrationNumber[255];
+    strcpy(registrationNumber, getMandatoryStringFieldFromUserInput(registrationNumber, "Insira o código do servidor a ser lido"));
+    
+    printf("\nServidor de código: {%s}\n", registrationNumber);
     int idWorker = checkExists(registrationNumber, 1);
 
     if(idWorker == -1){
@@ -186,41 +214,38 @@ int checkExists(char value[], int columnNumber){
     }
 }
 
-// - checar campos obrigatórios e se estão preenchidas corretamente-
-// bool checkItsComplete(int data){
-
-// }
-
 
 // - print at position -
 void printAtPosition(int position){
     if(spaceWorkers[position] == 1){
-        printf(line);
+        printf("\n%s\n", getDivider());
 
-        printf("\nPosição %d\n", position);
+        printf("\nPosição %d\n", position + 1);
 
-        printf("Código do servidor: %s\n", workerRegistrationNumber[position]);
-        printf("SIAPE:              %s\n", siape[position]);
-        printf("CPF:                %s\n", cpf[position]);
-        printf("Nome:               %s\n", name[position]);
-        printf("Data de Nascimento: %s\n", birthday[position]);
-        printf("RG:                 %s\n", rg[position]);
-        printf("Endereço:           %s\n", address[position]);
-        printf("Salário:            %.2f\n", wage[position]);
+        printf("%-20s %s\n", "Código do servidor:", workerRegistrationNumber[position]);
+        printf("%-20s %s\n", "SIAPE:", siape[position]);
+        printf("%-20s %s\n", "CPF:", cpf[position]);
+        printf("%-20s %s\n", "Nome:", name[position]);
+        printf("%-20s %s\n", "Data de Nascimento:", birthday[position]);
+        printf("%-20s %s\n", "RG:", rg[position]);
+        printf("%-20s %s\n", "Endereço:", address[position]);
+        printf("%-20s %.2f\n", "Salário:", wage[position]);
 
         switch(type[position]){
             case 0:
-                printf("Tipo:            Vazio");
+                printf("%-20s Vazio", "Tipo:");
                 break;
             case 1:
-                printf("Tipo:            Técnico Admnistrativo");
+                printf("%-20s Técnico Admnistrativo", "Tipo:");
                 break;
             case 2:
-                printf("Tipo:            Docente");
+                printf("%-20s Docente", "Tipo:");
                 break;
         }
 
-        printf(line);
+        printf("\n%s\n", getDivider());
+    } else {
+        printf("\nNão há nada na posição %d\n", position + 1);
     }
 }
 

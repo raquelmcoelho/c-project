@@ -36,7 +36,7 @@ void printBoolArray(bool array[], int n){
     printf("]\n");
 }
 
-void printStringArray(char** array, int n){
+void printStringArray(char array[][255], int n){
     printf("[");
     for(register int i = 0; i < n; i++){
         printf("%s", array[i]);
@@ -202,6 +202,7 @@ int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]){
     do {
         integer = getIntegerFieldFromUserInput(field, msg);
     } while (integer == 0);
+    // TODO: isso impede de inserir o numero 0
     return integer; 
 }
 
@@ -221,7 +222,8 @@ int getIntegerFieldFromUserInput(char* field, char msg[]){
 float getFloatFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
     fgets(field, 255, stdin);
-    return atof(field); 
+    return atof(field);
+    // TODO: fiz errors by \n
 }
 
 int getFirstVacantIndex(bool array[], int n){
@@ -235,7 +237,7 @@ int getFirstVacantIndex(bool array[], int n){
 
 char* getDivider(){
     char* _line = malloc(sizeof(char) * 255);
-    for(register int i = 0; i < 20; i++){
+    for(register int i = 0; i < 255; i++){
         _line[i] = '-';
     }
     _line[255] = '\0';
