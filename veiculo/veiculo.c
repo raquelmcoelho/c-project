@@ -30,6 +30,7 @@ void insertVehicle(){
   // get the first free position in the parking lot
   int position = getFirstVacantPosition(parkingSpaces, MAX_VEHICLES);
 
+  strcpy(codeOfEachVehicle[position], code);
   strcpy(descriptionOfEachVehicle[position], description);
   strcpy(licensePlateOfEachVehicle[position], licensePlate);
   strcpy(brandOfEachVehicle[position], brand);
@@ -37,6 +38,9 @@ void insertVehicle(){
   strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position], workerCode);
 
   showVehicleByPosition(position);
+
+  // mark the position as occupied
+  parkingSpaces[position] = true;
 
   showBlockingMessage();
 }
@@ -50,6 +54,14 @@ void readVehicleByPosition(){
   // block the terminal, so the user can read
   showBlockingMessage();
 
+}
+
+void readAllVehicles(){
+  // show all vehicles
+  showAllVehicles();
+
+  // block the terminal, so the user can read
+  showBlockingMessage();
 }
 
 // // função para alterar uma veículo existente 

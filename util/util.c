@@ -6,9 +6,15 @@
 
 
 // initializes an array of size n with the value false
-void initializeArray(bool* array, int n){
+void initializeBoolArray(bool* array, int n){
     for(register int i = 0; i < n; i++){
         array[i] = false;
+    }
+}
+
+void initializeIntArray(int* array, int n){
+    for(register int i = 0; i < n; i++){
+        array[i] = 0;
     }
 }
 
@@ -106,12 +112,11 @@ void orderPositionsAlphabetically(int indexes[], char array[][255], int n){
 // generates a random uuid
 char* generateUUID(){
     char* uuid = malloc(sizeof(char) * 255);
-    sprintf(uuid, "%04x%04x-%04x-%04x-%04x-%04x%04x%04x",
+    sprintf(uuid, "%04x%04x-%04x-%04x-%04x",
         rand() & 0xffff, rand() & 0xffff,
         rand() & 0xffff,
         rand() & 0x0fff | 0x4000,
-        rand() & 0x3fff | 0x8000,
-        rand() & 0xffff, rand() & 0xffff, rand() & 0xffff);
+        rand() & 0x3fff | 0x8000);
     return uuid;
 }
 

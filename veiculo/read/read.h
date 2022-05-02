@@ -1,8 +1,18 @@
-// função para mostrar/imprimir dados de uma veículo com base no código 
+// show vehicle data based on vehicle code
 void showVehicle(char vehicleRegistrationNumber[]);
 
-// função para mostrar/imprimir todas as veículos de um servidor
+// show all vehicles of a server
 void showVehiclesOfWorker(char workerRegistrationNumber[]);
 
-// função para mostrar/imprimir dados de um veículo com base na posição
+// show all vehicles of a server in alphabetical order
+void showVehiclesOfWorkerInAlphabeticalOrder(char workerRegistrationNumber[]);
+
+// show vehicle data based on vehicle position
 void showVehicleByPosition(int position);
+
+// show vehicle data based on vehicle code
+void showVehicleByCode(char code[]);
+
+
+// show all vehicles, regardless of server
+void showAllVehicles();

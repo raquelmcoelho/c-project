@@ -16,8 +16,8 @@ int main()
     int choice = 0;
 
     // make sure the database starts empty
-    initializeArray(parkingSpaces, MAX_VEHICLES);
-    initializeArray(spaceWorkers, MAX_WORKERS);
+    initializeBoolArray(parkingSpaces, MAX_VEHICLES);
+    initializeBoolArray(spaceWorkers, MAX_WORKERS);
     printBoolArray(parkingSpaces, MAX_VEHICLES);
     printBoolArray(spaceWorkers, MAX_WORKERS);
 
@@ -73,6 +73,10 @@ int main()
                 break;
             case 12:
                 readVehicleByPosition();
+                break;
+            case 13:
+                readAllVehicles();
+                break;
             default:
                 printf("Entrada inválida\n");
                 break;

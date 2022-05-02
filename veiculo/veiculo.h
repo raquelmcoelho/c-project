@@ -11,6 +11,7 @@ bool parkingSpaces[MAX_VEHICLES];
 
 
 // Esse header é para o módulo de veículos
+char codeOfEachVehicle[MAX_VEHICLES][255];
 char descriptionOfEachVehicle[MAX_VEHICLES][255];
 char licensePlateOfEachVehicle[MAX_VEHICLES][255];
 char brandOfEachVehicle[MAX_VEHICLES][255];

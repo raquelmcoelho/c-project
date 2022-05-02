@@ -47,7 +47,7 @@ bool spaceWorkers[MAX_WORKERS];
 
 
 // initializes an array of size n with the value false
-void initializeArray(bool array[], int n);
+void initializeBoolArray(bool array[], int n);
 
 // beautifully prints an array of size n
 void printBoolArray(bool array[], int n);
