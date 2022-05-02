@@ -39,18 +39,17 @@ int main()
         printf("%s6- Ler todos servidores por ordem alfabética                    %s\n", cyan, normal);
         printf("%s7- Ler todos professores por ordem alfabética                   %s\n", cyan, normal);
         printf("%s8- Ler todos técnicos admnistrativos por ordem alfabética       %s\n", cyan, normal);
-        printf("%s9- Adicionar veículo                                            %s\n", green, normal);
-        printf("%s10- Alterar veículo                                             %s\n", green, normal);
-        printf("%s11- Deletar veículo                                             %s\n", green, normal);
-        printf("%s12- Ler veículo                                                 %s\n", green, normal);
-        printf("%s13- Ler todos veículos                                          %s\n", green, normal);
-        printf("%s14- Ler todos veículos por ordem alfabética                     %s\n", green, normal);
+        printf("%s10- Adicionar veículo                                            %s\n", green, normal);
+        printf("%s11- Alterar veículo                                             %s\n", green, normal);
+        printf("%s12- Deletar veículo                                             %s\n", green, normal);
+        printf("%s13- Ler veículo                                                 %s\n", green, normal);
+        printf("%s14- Ler todos veículos                                          %s\n", green, normal);
+        printf("%s15- Ler todos veículos por ordem alfabética                     %s\n", green, normal);
         printf("%s100- sair                                                       %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
         char userInput[255];
         fgets(userInput, 255, stdin);
         choice = atoi(userInput);
-        printf("Prosseguindo com %d\n", choice);
         
         switch(choice){
             case 1:
@@ -77,13 +76,19 @@ int main()
             case 8:
                 technicianOrderByName();
                 break;
-            case 9:
+            case 10:
                 insertVehicle();
                 break;
+            case 11:
+                updateVehicle();
+                break;
             case 12:
-                readVehicleByPosition();
+                deleteVehicle();
                 break;
             case 13:
+                readVehicleByPosition();
+                break;
+            case 14:
                 readAllVehicles();
                 break;
             default:
@@ -91,8 +96,8 @@ int main()
                 break;
         }
         
-        fflush(stdin);
-        showBlockingMessage();
+        // fflush(stdin);
+        // showBlockingMessage();
     } while (choice != 100);
 
     exit(0);

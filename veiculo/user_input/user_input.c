@@ -32,3 +32,8 @@ int getPositionFromUserInput(){
   char position[255];
   return getMandatoryIntegerFieldFromUserInput(position, "Digite a posição do veículo: ");
 }
+
+char getWillFromUserInput(){
+  char will[255];
+  return getMandatoryWillFieldFromUserInput(will);
+}
