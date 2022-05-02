@@ -80,4 +80,6 @@ void showCustomBlockingMessage(char *msg);
 int findStringInArray(char array[][255], int n, char string[]);
 
 // get the first vacant position in an array
-int getFirstVacantPosition(bool array[], int n);
+int getFirstVacantIndex(bool array[], int n);
+
+char* getDivider();

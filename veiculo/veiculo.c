@@ -27,20 +27,22 @@ void insertVehicle(){
   brand = getVehicleBrandFromUserInput();
   model = getVehicleModelFromUserInput();
 
-  // get the first free position in the parking lot
-  int position = getFirstVacantPosition(parkingSpaces, MAX_VEHICLES);
+  // get the first free firstFreeIndex in the parking lot
+  int firstFreeIndex = getFirstVacantIndex(parkingSpaces, MAX_VEHICLES);
 
-  strcpy(codeOfEachVehicle[position], code);
-  strcpy(descriptionOfEachVehicle[position], description);
-  strcpy(licensePlateOfEachVehicle[position], licensePlate);
-  strcpy(brandOfEachVehicle[position], brand);
-  strcpy(modelOfEachVehicle[position], model);
-  strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position], workerCode);
-
-  showVehicleByPosition(position);
+  strcpy(codeOfEachVehicle[firstFreeIndex], code);
+  strcpy(descriptionOfEachVehicle[firstFreeIndex], description);
+  strcpy(licensePlateOfEachVehicle[firstFreeIndex], licensePlate);
+  strcpy(brandOfEachVehicle[firstFreeIndex], brand);
+  strcpy(modelOfEachVehicle[firstFreeIndex], model);
+  strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[firstFreeIndex], workerCode);
 
   // mark the position as occupied
-  parkingSpaces[position] = true;
+  parkingSpaces[firstFreeIndex] = true;
+
+  // show the vehicle
+  showVehicleByPosition(firstFreeIndex + 1);
+
 
   showBlockingMessage();
 }
@@ -49,7 +51,7 @@ void readVehicleByPosition(){
   // get the position from the user
   int position = getPositionFromUserInput();
   // show the vehicle
-  showVehicleByPosition(position - 1);
+  showVehicleByPosition(position);
 
   // block the terminal, so the user can read
   showBlockingMessage();
@@ -65,10 +67,22 @@ void readAllVehicles(){
 }
 
 // // função para alterar uma veículo existente 
-// void updateVehicle(int position, char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
+void updateVehicle(){}
+
+
 
 // // função para excluir uma veículo
-// void deleteVehicle(int position);
+void deleteVehicle(){
+  // get the position from the user
+  int position = getPositionFromUserInput();
+  // mark the position as empty
+  parkingSpaces[position - 1] = false;
+  // show the vehicle
+  showVehicleByPosition(position);
+
+  // block the terminal, so the user can read
+  showBlockingMessage();
+}
 
 // // função para mostrar/imprimir dados de uma veículo com base no código 
 // void showVehicle(char vehicleRegistrationNumber[]);

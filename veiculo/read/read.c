@@ -7,12 +7,16 @@
 
 // show vehicle by position
 void showVehicleByPosition(int position){
-    printf("%-20s\t%s\n", "Código:", codeOfEachVehicle[position]);
-    printf("%-20s\t%s\n", "Descrição:", descriptionOfEachVehicle[position]);
-    printf("%-20s\t%s\n", "Placa:", licensePlateOfEachVehicle[position]);
-    printf("%-20s\t%s\n", "Marca:", brandOfEachVehicle[position]);
-    printf("%-20s\t%s\n", "Modelo:", modelOfEachVehicle[position]);
-    printf("%-20s\t%s\n", "Código do servidor:", workerRegistrationNumberOfVehicleOfEachVehicle[position]);
+    if(parkingSpaces[position - 1]){
+    printf("Veículo na %dª posição: \n", position);
+    printf("%-20s\t%s\n", "Código:", codeOfEachVehicle[position - 1]);
+    printf("%-20s\t%s\n", "Descrição:", descriptionOfEachVehicle[position - 1]);
+    printf("%-20s\t%s\n", "Placa:", licensePlateOfEachVehicle[position - 1]);
+    printf("%-20s\t%s\n", "Marca:", brandOfEachVehicle[position - 1]);
+    printf("%-20s\t%s\n", "Modelo:", modelOfEachVehicle[position - 1]);
+    printf("%-20s\t%s\n", "Código do servidor:", workerRegistrationNumberOfVehicleOfEachVehicle[position - 1]);
+    printf("%s\n",getDivider());
+    } 
 }
 
 // show vehicles of worker
@@ -43,10 +47,7 @@ void showVehicleByCode(char code[]){
 
 void showAllVehicles(){
     for(int i = 0; i < MAX_VEHICLES; i++){
-        if(parkingSpaces[i]){
-            showVehicleByPosition(i);
-            printf("\n");
-        }
+        showVehicleByPosition(i + 1);
     }
 }
 

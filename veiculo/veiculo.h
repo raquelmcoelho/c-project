@@ -25,10 +25,10 @@ char workerRegistrationNumberOfVehicleOfEachVehicle[MAX_VEHICLES][255];
 void insertVehicle();
 
 // função para alterar uma veículo existente 
-void updateVehicle(int position, char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
+void updateVehicle();
 
 // função para excluir uma veículo
-void deleteVehicle(int position);
+void deleteVehicle();
 
 // função para mostrar/imprimir dados de uma veículo com base no código 
 void showVehicle(char vehicleRegistrationNumber[]);

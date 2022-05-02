@@ -191,7 +191,7 @@ int getMandatoryIntegerFieldFromUserInput(char* field){
   return integer;
 }
 
-int getFirstVacantPosition(bool array[], int n){
+int getFirstVacantIndex(bool array[], int n){
     for(register int i = 0; i < n; i++){
         if(array[i] == false){
             return i;
@@ -200,3 +200,11 @@ int getFirstVacantPosition(bool array[], int n){
     return -1;
 }
 
+char* getDivider(){
+    char* _line = malloc(sizeof(char) * 255);
+    for(register int i = 0; i < 20; i++){
+        _line[i] = '-';
+    }
+    _line[255] = '\0';
+    return _line;
+}
