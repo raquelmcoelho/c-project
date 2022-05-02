@@ -27,9 +27,9 @@ TypeWorker type[MAX_WORKERS];
 
 // Functions for Workers
 // - inserir novo servidor --
-bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType);
+bool insertNewServer();
 // - alterar um servidor existente — 
-bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType);
+bool alterServer(int position);
 // - excluir um servidor — 
 void deleteServer(int position);
 // - mostrar/imprimir dados de um servidor com base no código –

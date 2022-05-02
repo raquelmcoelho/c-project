@@ -158,7 +158,7 @@ int findSpace(bool array[], int n){
 int findStringInArray(char array[][255], int n, char string[]){
     for(register int i = 0; i < n; i++){
         if(strcmp(array[i], string) == 0 ){
-            printf("copia, %d, %s, %s", i, array[i], string);
+            printf("\nstring1 %s e string2 %s e foi achado na posicao %d", array[i], string, i);
             return i;
         }
     }
@@ -180,23 +180,40 @@ void showBlockingMessage()
 }
 
 // get a mandatory string field from the user
-char* getMandatoryStringFieldFromUserInput(char* field){
+char* getMandatoryStringFieldFromUserInput(char* field, char msg[]){
     char* sanitizedString;
     do {
-        fgets(field, 255, stdin);
-        sanitizedString = removeTrailingAndLeadingSpaces(field);
+        sanitizedString = getStringFieldFromUserInput(field, msg);
     } while (sanitizedString[0] == '\n');
     return sanitizedString;
 }
 
 // get a mandatory integer field from the user
-int getMandatoryIntegerFieldFromUserInput(char* field){
+int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]){
     int integer;
     do {
-        fgets(field, 255, stdin);
-        integer = atoi(field);
+        integer = getIntegerFieldFromUserInput(field, msg);
     } while (integer == 0);
     return integer; 
+}
+
+// get a string field from the user
+char* getStringFieldFromUserInput(char* field, char msg[]){
+    printf("\n%s\n", msg);
+    fgets(field, 255, stdin);
+    return removeTrailingAndLeadingSpaces(field);
+}
+
+int getIntegerFieldFromUserInput(char* field, char msg[]){
+    printf("\n%s\n", msg);
+    fgets(field, 255, stdin);
+    return atoi(field); 
+}
+
+float getFloatFieldFromUserInput(char* field, char msg[]){
+    printf("\n%s\n", msg);
+    fgets(field, 255, stdin);
+    return atof(field); 
 }
 
 int getFirstVacantPosition(bool array[], int n){

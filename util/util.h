@@ -78,11 +78,14 @@ int findStringInArray(char array[][255], int n, char string[]);
 void showCustomBlockingMessage(char *msg);
 void showBlockingMessage();
 
-// get a mandatory string field from the user
-char* getMandatoryStringFieldFromUserInput(char* field);
+// get a mandatory (or not) string, integer or float field from the user
+char* getMandatoryStringFieldFromUserInput(char* field, char msg[]);
+int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]);
+char* getStringFieldFromUserInput(char* field, char msg[]);
+int getIntegerFieldFromUserInput(char* field, char msg[]);
+float getFloatFieldFromUserInput(char* field, char msg[]);
 
-// get a mandatory integer field from the user
-int getMandatoryIntegerFieldFromUserInput(char* field);
+
 
 // get the first vacant position in an array
 int getFirstVacantPosition(bool array[], int n);
@@ -91,6 +94,6 @@ int getFirstVacantPosition(bool array[], int n);
 char* sanitizeString(char* string);
 
 // Insert data, what kind of data and if it's mandatory
-// int getInt(bool isMandatory);
-// char *getString(bool isMandatory);
-// float getFloat(bool isMandatory);
+int getInt(bool isMandatory);
+char *getString(bool isMandatory);
+float getFloat(bool isMandatory);
