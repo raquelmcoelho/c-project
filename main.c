@@ -13,6 +13,7 @@ int main()
 {
     setlocale(LC_ALL, "Portuguese");
 
+    // integer of choice make by user from menu of options
     int choice = 0;
 
     // make sure the database starts empty
@@ -28,7 +29,7 @@ int main()
 
     do
     {
-        // menu
+        // menu of options
         printf("\n\nMENU\n");
         printf("%s1- Adicionar servidor     (inserir dados)                       %s\n", cyan, normal);
         printf("%s2- Alterar servidor       (inserir código e dados)              %s\n", cyan, normal);
@@ -46,14 +47,19 @@ int main()
         printf("%s14- Ler todos veículos por ordem alfabética                     %s\n", green, normal);
         printf("%s100- sair                                                       %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
-        // scanf("%d", &choice);
         char userInput[255];
         fgets(userInput, 255, stdin);
         choice = atoi(userInput);
-        printf("Prosseguindo com %d\n", choice);
+        printf("Prosseguindo com %d %d\n", choice);
         
         switch(choice){
             case 1:
+                // gets all data columns
+                // check the mandatory ones
+                // check the unique ones
+                // check range of enum insert
+                // calls function
+                // return if it's well succeed
                 insertNewServer("12345", "12345", "12345", "zaquel", "15/1", "2018", "rua 123", 103.4, 1);
                 insertNewServer("3", "3", "3", "czaquel", "15/1", "2018", "rua 123", 103.4, 1);
                 insertNewServer("4", "4", "4", "dzaquel", "15/1", "2018", "rua 123", 103.4, 0);
@@ -94,7 +100,7 @@ int main()
         }
         
         fflush(stdin);
-        // system("PAUSE");
+        showBlockingMessage();
     } while (choice != 100);
 
     exit(0);

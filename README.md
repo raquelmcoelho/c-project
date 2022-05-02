@@ -20,3 +20,7 @@ password: PHOENIX4EVER
 
 -  👩‍💻 [@raquelmcoelho](https://www.github.com/raquelmcoelho)
 -  👩‍💻 [@ViniciusM2](https://www.github.com/ViniciusM2)
+
+
+![raquel](authors/raquel.png)
+![menezes](authors/menezes.png)

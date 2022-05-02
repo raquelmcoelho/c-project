@@ -8,7 +8,6 @@
 #include "veiculo.h" 
 
 
-
 // função para inserir um novo veículo
 void insertVehicle(){
   // declare necessary variables
