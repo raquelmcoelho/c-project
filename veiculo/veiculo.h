@@ -30,11 +30,7 @@ void updateVehicle();
 // função para excluir uma veículo
 void deleteVehicle();
 
-// função para mostrar/imprimir dados de uma veículo com base no código 
-void showVehicle(char vehicleRegistrationNumber[]);
-
-// função para mostrar/imprimir todas as veículos de um servidor
-void showVehiclesOfWorker(char workerRegistrationNumber[]);
+void readVehiclesOfWorkerInAlphabeticalOrder();
 
 
 // Funções auxiliares

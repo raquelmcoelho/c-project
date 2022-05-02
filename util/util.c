@@ -36,7 +36,7 @@ void printBoolArray(bool array[], int n){
     printf("]\n");
 }
 
-void printStringArray(char array[][255], int n){
+void printStringArray(char** array, int n){
     printf("[");
     for(register int i = 0; i < n; i++){
         printf("%s", array[i]);

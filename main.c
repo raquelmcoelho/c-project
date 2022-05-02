@@ -44,7 +44,8 @@ int main()
         printf("%s12- Deletar veículo                                             %s\n", green, normal);
         printf("%s13- Ler veículo                                                 %s\n", green, normal);
         printf("%s14- Ler todos veículos                                          %s\n", green, normal);
-        printf("%s15- Ler todos veículos por ordem alfabética                     %s\n", green, normal);
+        printf("%s15- Ler os veículos de um servidor em ordem alfabética          %s\n", green, normal);
+        printf("%s16- Ler os veículos em ordem alfabética          %s\n", green, normal);
         printf("%s100- sair                                                       %s\n", red, normal);
         printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
         char userInput[255];
@@ -98,6 +99,12 @@ int main()
                 break;
             case 14:
                 readAllVehicles();
+                break;
+            case 15:            
+                readVehiclesOfWorkerInAlphabeticalOrder();
+                break;
+            case 16:
+                readVehiclesInAlphabeticalOrder();
                 break;
             default:
                 printf("Entrada inválida\n");

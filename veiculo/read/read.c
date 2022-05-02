@@ -36,7 +36,7 @@ void showVehicleByCode(char code[]){
     for(int i = 0; i < MAX_VEHICLES; i++){
         // if the code of the vehicle is the same as the code
         if(parkingSpaces[i] && strcmp(codeOfEachVehicle[i], code) == 0){
-            showVehicleByPosition(i);
+            showVehicleByPosition(i + 1);
         }
     }
 }
@@ -51,53 +51,90 @@ void showAllVehicles(){
     }
 }
 
+void orderCodesLikeTheDescriptionsAlphabetically(char** codeOfEachVehicleCopy){
+    char** descriptionOfEachVehicleCopy = (char**) malloc(255 * sizeof(char*));
 
-void showVehiclesOfWorkerInAlphabeticalOrder(char workerRegistrationNumber[]){
-
-    int vehiclesOfWorker[MAX_VEHICLES];
-    char descriptionsOfVehiclesOfWorker[MAX_VEHICLES][255];
-
-    initializeIntArray(vehiclesOfWorker, MAX_VEHICLES);
-
-    
-    // first, get the positions of the vehicles of the worker
-
-    // for each space that is occupied in the parking lot
+    // copy the description array
     for(int i = 0; i < MAX_VEHICLES; i++){
-        // if the worker registration number of the vehicle is the same as the worker registration number
-        if(parkingSpaces[i] && strcmp(workerRegistrationNumberOfVehicleOfEachVehicle[i], workerRegistrationNumber) == 0){
-            vehiclesOfWorker[i] = i;
-        }
+        descriptionOfEachVehicleCopy[i] = malloc(sizeof(char) * 255);
+        strcpy(descriptionOfEachVehicleCopy[i], descriptionOfEachVehicle[i]);
     }
 
-    // get the descriptions of the vehicles of the worker
+    // copy the code array
     for(int i = 0; i < MAX_VEHICLES; i++){
-        if(parkingSpaces[i] && strcmp(workerRegistrationNumberOfVehicleOfEachVehicle[i], workerRegistrationNumber) == 0){
-            strcpy(descriptionsOfVehiclesOfWorker[i], descriptionOfEachVehicle[i]);
-        }
+        codeOfEachVehicleCopy[i] = malloc(sizeof(char) * 255);
+        strcpy(codeOfEachVehicleCopy[i], codeOfEachVehicle[i]);
     }
 
-    // sort the vehicles of the worker according to description alphabetically
+    // sort the description array alphabetically, ordering also the code array so
+    // the code of each vehicle is in the same position as the description
     for(int i = 0; i < MAX_VEHICLES; i++){
         for(int j = 0; j < MAX_VEHICLES; j++){
-            if(strcmp(descriptionsOfVehiclesOfWorker[i], descriptionsOfVehiclesOfWorker[j]) < 0){
-                char aux[255];
-                strcpy(aux, descriptionsOfVehiclesOfWorker[i]);
-                strcpy(descriptionsOfVehiclesOfWorker[i], descriptionsOfVehiclesOfWorker[j]);
-                strcpy(descriptionsOfVehiclesOfWorker[j], aux);
+            if(strcmp(descriptionOfEachVehicleCopy[i], descriptionOfEachVehicleCopy[j]) < 0){
+                char* temp = descriptionOfEachVehicleCopy[i];
+                descriptionOfEachVehicleCopy[i] = descriptionOfEachVehicleCopy[j];
+                descriptionOfEachVehicleCopy[j] = temp;
 
-                int aux2 = vehiclesOfWorker[i];
-                vehiclesOfWorker[i] = vehiclesOfWorker[j];
-                vehiclesOfWorker[j] = aux2;
+                temp = codeOfEachVehicleCopy[i];
+                codeOfEachVehicleCopy[i] = codeOfEachVehicleCopy[j];
+                codeOfEachVehicleCopy[j] = temp;
             }
         }
     }
+}
 
-    // show the vehicles of the worker
+void orderWorkerCodesLikeTheDescriptionsAlphabetically(char** workerRegistrationNumberOfVehicleOfEachVehicleCopy){
+    char** descriptionOfEachVehicleCopy = (char**) malloc(255 * sizeof(char*));
+
+    // copy the description array
     for(int i = 0; i < MAX_VEHICLES; i++){
-        if(vehiclesOfWorker[i] != 0){
-            showVehicleByPosition(vehiclesOfWorker[i]);
-        }
+        descriptionOfEachVehicleCopy[i] = malloc(sizeof(char) * 255);
+        strcpy(descriptionOfEachVehicleCopy[i], descriptionOfEachVehicle[i]);
     }
 
+    // copy the code array
+    for(int i = 0; i < MAX_VEHICLES; i++){
+        workerRegistrationNumberOfVehicleOfEachVehicleCopy[i] = malloc(sizeof(char) * 255);
+        strcpy(workerRegistrationNumberOfVehicleOfEachVehicleCopy[i], workerRegistrationNumberOfVehicleOfEachVehicle[i]);
+    }
+
+    // sort the description array alphabetically, ordering also the code array so
+    // the code of each vehicle is in the same position as the description
+    for(int i = 0; i < MAX_VEHICLES; i++){
+        for(int j = 0; j < MAX_VEHICLES; j++){
+            if(strcmp(descriptionOfEachVehicleCopy[i], descriptionOfEachVehicleCopy[j]) < 0){
+                char* temp = descriptionOfEachVehicleCopy[i];
+                descriptionOfEachVehicleCopy[i] = descriptionOfEachVehicleCopy[j];
+                descriptionOfEachVehicleCopy[j] = temp;
+
+                temp = workerRegistrationNumberOfVehicleOfEachVehicleCopy[i];
+                workerRegistrationNumberOfVehicleOfEachVehicleCopy[i] = workerRegistrationNumberOfVehicleOfEachVehicleCopy[j];
+                workerRegistrationNumberOfVehicleOfEachVehicleCopy[j] = temp;
+            }
+        }
+    }
+}
+
+void showVehiclesOfWorkerInAlphabeticalOrder(char workerRegistrationNumber[]){
+    char** codeOfEachVehicleCopy = (char**) malloc(255 * sizeof(char*));
+    char** workerRegistrationNumberOfVehicleOfEachVehicleCopy = (char**) malloc(255 * sizeof(char*));
+
+    orderCodesLikeTheDescriptionsAlphabetically(codeOfEachVehicleCopy);
+    orderWorkerCodesLikeTheDescriptionsAlphabetically(workerRegistrationNumberOfVehicleOfEachVehicleCopy);
+    // for each code, show the vehicle
+    for(int i = 0; i < MAX_VEHICLES; i++){
+        if(strcmp(workerRegistrationNumberOfVehicleOfEachVehicleCopy[i], workerRegistrationNumber) == 0){
+            showVehicleByCode(codeOfEachVehicleCopy[i]);
+        }
+    }   
+}
+
+
+void showVehiclesInAlphabeticalOrder(){
+    char** codeOfEachVehicleCopy = (char**) malloc(255 * sizeof(char*));
+    orderCodesLikeTheDescriptionsAlphabetically(codeOfEachVehicleCopy);
+    // for each code, show the vehicle
+    for(int i = 0; i < MAX_VEHICLES; i++){
+        showVehicleByCode(codeOfEachVehicleCopy[i]);
+    }    
 }

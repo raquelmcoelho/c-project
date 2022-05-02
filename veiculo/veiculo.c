@@ -126,8 +126,6 @@ void updateVehicle(){
   showBlockingMessage();
 }
 
-
-
 //  função para excluir uma veículo
 void deleteVehicle(){
   // get the position from the user
@@ -141,36 +139,20 @@ void deleteVehicle(){
   showBlockingMessage();
 }
 
-// // função para mostrar/imprimir dados de uma veículo com base no código 
-// void showVehicle(char vehicleRegistrationNumber[]);
+void readVehiclesOfWorkerInAlphabeticalOrder(){
+  // get the worker code from the user
+  char* workerCode = getWorkerCodeFromUserInput();
+  // show the vehicles of the worker
+  showVehiclesOfWorkerInAlphabeticalOrder(workerCode);
 
-// // função para mostrar/imprimir todas as veículos de um servidor
-// void showVehiclesOfWorker(char workerRegistrationNumber[]);
+  // block the terminal, so the user can read
+  showBlockingMessage();
+}
 
+void readVehiclesInAlphabeticalOrder(){
+  // show the vehicles in alphabetical order
+  showVehiclesInAlphabeticalOrder();
 
-// // Funções auxiliares
-
-// // função verificadora de existência do veículo
-// bool existsVehicle(char vehicleRegistrationNumber[]);
-
-// // função verificadora de unicidade da descrição do veículo
-// bool verifyDescriptionUniqueness(char description[]);
-
-// // função para checar campos obrigatórios
-// bool verifyRequiredFields(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[]);
-
-// // funções de tratamento de dados vindos do usuário
-// void sanitizeVehicleRegistrationNumber(char vehicleRegistrationNumber[]);
-// void sanitizeDescription(char description[]);
-// void sanitizeLicensePlate(char licensePlate[]);
-// void sanitizeBrand(char brand[]);
-// void sanitizeModel(char model[]);
-// void sanitizeWorkerRegistrationNumber(char workerRegistrationNumber[]);
-
-// // função geradora de códigos de identificação de veículos
-// void generateVehicleRegistrationNumber(char vehicleRegistrationNumber[]);
-
-///////////////////////////////////////////////
-
-
-
+  // block the terminal, so the user can read
+  showBlockingMessage();
+}
