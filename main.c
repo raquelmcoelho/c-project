@@ -54,24 +54,16 @@ int main()
         
         switch(choice){
             case 1:
-                // gets all data columns
-                // check the mandatory ones
-                // check the unique ones
-                // check range of enum insert
-                // calls function
-                // return if it's well succeed
-                insertNewServer("12345", "12345", "12345", "zaquel", "15/1", "2018", "rua 123", 103.4, 1);
-                insertNewServer("3", "3", "3", "czaquel", "15/1", "2018", "rua 123", 103.4, 1);
-                insertNewServer("4", "4", "4", "dzaquel", "15/1", "2018", "rua 123", 103.4, 0);
-                insertNewServer("1", "1", "1", "azaquel", "15/1", "2018", "rua 123", 103.4, 0);
-                insertNewServer("5", "5", "5", "fzaquel", "15/1", "2018", "rua 123", 103.4, 2);
-                insertNewServer("2", "2", "2", "bzaquel", "15/1", "2018", "rua 123", 103.4, 2);
+                insertNewServer();
+                break;
+            case 2:
+                alterServer(1);
                 break;
             case 3:
-                deleteServer(0);
+                deleteServer(1);
                 break;
             case 4:
-                read("12345");
+                read("123");
                 break;
             case 5:
                 readAll();

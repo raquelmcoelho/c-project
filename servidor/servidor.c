@@ -2,25 +2,79 @@
 
 // Functions for Workers
 // - inserir novo servidor --
-bool insertNewServer(char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType){
+bool insertNewServer(){
     int spaceIndex = findSpace(spaceWorkers, MAX_WORKERS);
+    
     if(spaceIndex == -1){
         printf("\nNão há espaço disponível!\n");
         return false;
     } else {
         // Check if it has data
-        if(alterServer(spaceIndex, newWorkerRegistrationNumber, newSiape, newCpf, newName, newBirthday, newRg, newAddress, newWage, newType)){
+        if(alterServer(spaceIndex)){
             spaceWorkers[spaceIndex] = 1;
             return true;
         } else {
-            printf("\nFALHA: Código, SIAPE ou CPF repetido\n");
             return false;
         }
     }
 }
 
 // - alterar um servidor existente — 
-bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape[], char newCpf[], char newName[], char newBirthday[], char newRg[], char newAddress[], float newWage, TypeWorker newType){
+bool alterServer(int position){
+    // get Mandatory User Data
+    char newWorkerRegistrationNumber[255] ;
+    char newSiape[255];
+    char newCpf[255];
+    char newName[255];
+    char newBirthday[255];
+
+    // get Opcional User Data
+    char newRg[255];
+    char newAddress[255];
+    float newWage;
+    TypeWorker newType;
+
+    strcpy(newWorkerRegistrationNumber, generateUUID());
+
+    strcpy(newSiape, getMandatoryStringFieldFromUserInput(siape, "Insira número SIAPE:"));
+    strcpy(newCpf, getMandatoryStringFieldFromUserInput(cpf, "Insira seu número de CPF:"));
+    strcpy(newName, getMandatoryStringFieldFromUserInput(name, "Insira seu Nome:"));
+    strcpy(newBirthday, getMandatoryStringFieldFromUserInput(birthday, "Insira sua data de aniversário"));
+
+
+    strcpy(newRg, getMandatoryStringFieldFromUserInput(rg, "(opcional) Insira seu número de RG"));
+    strcpy(newAddress, getMandatoryStringFieldFromUserInput(address, "(opcional) Insira seu endereço"));
+    newWage = getFloatFieldFromUserInput(wage, "(opcional) Insira seu salário");
+
+    int myVar = 0;
+    myVar = getIntegerFieldFromUserInput(type, "(opcional) Insira seu tipo: \n0 - Nada\n 1- Docente\n 2- Técnico Admnistrativo\nResposta:");
+    switch(myVar){
+        case 0:
+            newType = 0;
+            break;
+        case 1:
+            newType = 1;
+            break;
+        case 2:
+            newType = 2;
+            break;
+        default:
+            newType = 0;
+            break;
+    }
+
+    printf("CODIGO: %s", newWorkerRegistrationNumber) ;  
+    printf("\nSIAPE: %s", newSiape) ;  
+    printf("CPF: %s", newCpf) ;  
+    printf("NOME: %s", newName) ;  
+    printf("ANIVERSARIO: %s", newBirthday) ;  
+    printf("RG: %s", newRg) ;  
+    printf("ENDEREÇO: %s", newAddress) ;  
+    printf("SALÁRIO: %.2f", newWage) ;  
+    printf("\nTIPO ENUM: %d", newType) ;  
+
+    // TODO: retirar \n no fgets()
+
     // Check if already exists registration number, cpf, siape and rg
     if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1)){ //} && (checkExists(newRg, 4) == -1)){
         strcpy(workerRegistrationNumber[position], newWorkerRegistrationNumber);
@@ -32,8 +86,10 @@ bool alterServer(int position, char newWorkerRegistrationNumber[], char newSiape
         strcpy(address[position], newAddress);
         wage[position] = newWage;
         type[position] = newType;
+
         return true;
     } else {
+        printf("\nFALHA: Código, SIAPE ou CPF repetido\n");
         return false;
     }
 }
