@@ -131,18 +131,7 @@ char* removeTrailingAndLeadingSpaces(char* string){
         newString[k - i] = string[k];
     }
     newString[strlen(string) - j -1] = '\0';
-    printf("newString {%s}", newString);
     return newString;
-}
-
-// Returns the index of the first space it finds, if it doesn't find it returns -1
-int findSpace(bool array[], int n){
-    for(register int i = 0; i < n; i++){
-        if(array[i] == false){
-            return i;
-        }
-    }
-    return -1;
 }
 
 // Find something in a array and return the position
@@ -209,6 +198,7 @@ int getIntegerFieldFromUserInput(char* field, char msg[]){
 }
 
 
+// Returns the index of the first vacant it finds, if it doesn't find it returns -1
 int getFirstVacantIndex(bool array[], int n){
     for(register int i = 0; i < n; i++){
         if(array[i] == false){

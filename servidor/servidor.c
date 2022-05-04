@@ -4,7 +4,7 @@
 
 // - inserir novo servidor --
 bool insertNewServer(){
-    int spaceIndex = findSpace(spaceWorkers, MAX_WORKERS);
+    int spaceIndex = getFirstVacantIndex(spaceWorkers, MAX_WORKERS);
     
     if(spaceIndex == -1){
         printf("\nNão há espaço disponível!\n");
@@ -60,17 +60,6 @@ bool alterServer(int position){
             newType = 0;
             break;
     }
-
-    printf("\nCODIGO: %s", newWorkerRegistrationNumber) ;  
-    printf("\nSIAPE: %s", newSiape) ;  
-    printf("\nCPF: %s", newCpf) ;  
-    printf("\nNOME: %s", newName) ;  
-    printf("\nANIVERSARIO: %s", newBirthday) ;  
-    printf("\nRG: %s", newRg) ;  
-    printf("\nENDEREÇO: %s", newAddress) ;  
-    printf("\nSALÁRIO: %s", newWage) ;
-    printf("\nTIPO ENUM: %d", newType) ;  
-
 
     // Check if already exists registration number, cpf and siape
     if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1)){ //} && (checkExists(newRg, 4) == -1)){
