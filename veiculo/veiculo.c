@@ -26,6 +26,26 @@ void insertVehicle(){
   licensePlate = getVehicleLicensePlateFromUserInput();
   brand = getVehicleBrandFromUserInput();
   model = getVehicleModelFromUserInput();
+  
+  // verify if the worker code provided exists
+  // if it doesn't, print an error message and return
+  if(
+      findStringInArray(workerRegistrationNumber, MAX_WORKERS, workerCode) == -1
+    ){
+    printf("O trabalhador não existe.\n");
+    showBlockingMessage();
+    return;
+  }
+
+  // verify if the description provided already exists
+  // if it does, print an error message and return
+  if(
+      findStringInArray(descriptionOfEachVehicle, MAX_VEHICLES, description) != -1
+    ){
+    printf("O veículo com essa descrição já existe.\n");
+    showBlockingMessage();
+    return;
+  }
 
   // get the first free firstFreeIndex in the parking lot
   int firstFreeIndex = getFirstVacantIndex(parkingSpaces, MAX_VEHICLES);
@@ -61,7 +81,6 @@ void readVehicleByPosition(){
 void readAllVehicles(){
   // show all vehicles
   showAllVehicles();
-
   // block the terminal, so the user can read
   showBlockingMessage();
 }
@@ -132,6 +151,16 @@ void deleteVehicle(){
   int position = getPositionFromUserInput();
   // mark the position as empty
   parkingSpaces[position - 1] = false;
+
+  // clear the data on the corresponding index
+  
+  strcpy(codeOfEachVehicle[position - 1], "");
+  strcpy(descriptionOfEachVehicle[position - 1], "");
+  strcpy(licensePlateOfEachVehicle[position - 1], "");
+  strcpy(brandOfEachVehicle[position - 1], "");
+  strcpy(modelOfEachVehicle[position - 1], "");
+  strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position - 1], "");
+
   // show the vehicle
   showVehicleByPosition(position);
 
