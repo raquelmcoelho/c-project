@@ -63,8 +63,6 @@ void insertVehicle(){
   // show the vehicle
   showVehicleByPosition(firstFreeIndex + 1);
 
-
-  showBlockingMessage();
 }
 
 void readVehicleByPosition(){
@@ -73,16 +71,12 @@ void readVehicleByPosition(){
   // show the vehicle
   showVehicleByPosition(position);
 
-  // block the terminal, so the user can read
-  showBlockingMessage();
-
 }
 
 void readAllVehicles(){
   // show all vehicles
   showAllVehicles();
-  // block the terminal, so the user can read
-  showBlockingMessage();
+
 }
 
 // // função para alterar uma veículo existente 
@@ -141,8 +135,6 @@ void updateVehicle(){
   // show the vehicle
   showVehicleByPosition(position);
 
-  // block the terminal, so the user can read
-  showBlockingMessage();
 }
 
 //  função para excluir uma veículo
@@ -164,8 +156,6 @@ void deleteVehicle(){
   // show the vehicle
   showVehicleByPosition(position);
 
-  // block the terminal, so the user can read
-  showBlockingMessage();
 }
 
 void readVehiclesOfWorkerInAlphabeticalOrder(){
@@ -174,14 +164,10 @@ void readVehiclesOfWorkerInAlphabeticalOrder(){
   // show the vehicles of the worker
   showVehiclesOfWorkerInAlphabeticalOrder(workerCode);
 
-  // block the terminal, so the user can read
-  showBlockingMessage();
 }
 
 void readVehiclesInAlphabeticalOrder(){
   // show the vehicles in alphabetical order
   showVehiclesInAlphabeticalOrder();
 
-  // block the terminal, so the user can read
-  showBlockingMessage();
 }

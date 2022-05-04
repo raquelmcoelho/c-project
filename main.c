@@ -22,6 +22,7 @@ int main(){
     // initialize columns of each table
     initializeWorkerColumns();
 
+
     do{
         // menu of options
         printf("\n\nMENU\n");
@@ -95,14 +96,13 @@ int main(){
                 break;
             case 100:
                 printf("\n%sAté a próxima ☻♥%s\n", yellow, normal);
+                exit(0);
             default:
                 printf("Entrada inválida\n");
                 break;
         }
         
-        // fflush(stdin);
-        // showBlockingMessage();
+        fflush(stdin);
+        showBlockingMessage();
     } while (choice != 100);
-
-    exit(0);
 }
