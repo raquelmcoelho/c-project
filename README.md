@@ -6,7 +6,7 @@ C language project about a parking lot system with an hard coded CRUD structure
 - All coded in english
 - All printed and commented in portuguese
 - Using CamelCase when  naming variables and functions
-- All global definitions and functions must being kept in util.h and util.c
+- All global definitions and functions must be kept in util.h and util.c
 
 ## Authors
 
