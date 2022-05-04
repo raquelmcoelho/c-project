@@ -21,7 +21,7 @@ char rg[MAX_WORKERS][255];
 // - endereço 
 char address[MAX_WORKERS][255];
 // - salário 
-float wage[MAX_WORKERS];
+char wage[MAX_WORKERS][255];
 // - tipo (docente ou técnico administrativo)
 TypeWorker type[MAX_WORKERS];
 

@@ -51,7 +51,6 @@ void initializeStringArray(char array[][255], int n);
 // beautifully prints an array of size n
 void printBoolArray(bool array[], int n);
 void printStringArray(char array[][255], int n);
-void printFloatArray(float array[], int n);
 void printIntArray(int array[], int n);
 
 // orders an array of size n alphabetically
@@ -79,7 +78,6 @@ char* getMandatoryStringFieldFromUserInput(char* field, char msg[]);
 int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]);
 char* getStringFieldFromUserInput(char* field, char msg[]);
 int getIntegerFieldFromUserInput(char* field, char msg[]);
-float getFloatFieldFromUserInput(char* field, char msg[]);
 
 
 
@@ -88,11 +86,6 @@ int getFirstVacantPosition(bool array[], int n);
 
 // sanitizes a string
 char* sanitizeString(char* string);
-
-// Insert data, what kind of data and if it's mandatory
-int getInt(bool isMandatory);
-char *getString(bool isMandatory);
-float getFloat(bool isMandatory);
 
 // Find something in a array and return the position
 int findStringInArray(char array[][255], int n, char string[]);

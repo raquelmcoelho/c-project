@@ -30,7 +30,7 @@ bool alterServer(int position){
     // get Opcional User Data
     char newRg[255];
     char newAddress[255];
-    float newWage;
+    char newWage[255];
     TypeWorker newType;
     
     strcpy(newWorkerRegistrationNumber, generateUUID());
@@ -42,8 +42,7 @@ bool alterServer(int position){
     strcpy(newBirthday, getMandatoryStringFieldFromUserInput(myVar, "Insira sua data de aniversário"));
     strcpy(newRg, getStringFieldFromUserInput(myVar, "(opcional) Insira seu número de RG"));
     strcpy(newAddress, getStringFieldFromUserInput(myVar, "(opcional) Insira seu endereço"));
-
-    newWage = getFloatFieldFromUserInput(myVar, "(opcional) Insira seu salário");
+    strcpy(newWage, getMandatoryStringFieldFromUserInput(myVar, "(opcional) Insira seu salário"));
 
     int typeChoosen = 0;
     typeChoosen = getIntegerFieldFromUserInput(myVar, "(opcional) Insira seu tipo: \n 0 - Nada\n 1- Docente\n 2- Técnico Admnistrativo\nResposta:");
@@ -69,7 +68,7 @@ bool alterServer(int position){
     printf("\nANIVERSARIO: %s", newBirthday) ;  
     printf("\nRG: %s", newRg) ;  
     printf("\nENDEREÇO: %s", newAddress) ;  
-    printf("\nSALÁRIO: %.2f", newWage) ;  
+    printf("\nSALÁRIO: %s", newWage) ;
     printf("\nTIPO ENUM: %d", newType) ;  
 
 
@@ -89,7 +88,7 @@ bool alterServer(int position){
         strcpy(birthday[position], newBirthday);
         strcpy(rg[position], newRg);
         strcpy(address[position], newAddress);
-        wage[position] = newWage;
+        strcpy(wage[position], newWage);
         type[position] = newType;
 
         spaceWorkers[position] = 1;
@@ -117,7 +116,7 @@ void deleteServer(int position){
     strcpy(birthday[position], "vazio");
     strcpy(rg[position], "vazio");
     strcpy(address[position], "vazio");
-    wage[position] = 0.0;
+    strcpy(wage[position], "vazio");
     type[position] = 0;
 
     spaceWorkers[position] = 0;
@@ -218,7 +217,7 @@ void printAtPosition(int position){
         printf("%-20s %s\n",   "Data de Nascimento:", birthday[position]);
         printf("%-20s %s\n",   "RG:", rg[position]);
         printf("%-20s %s\n",   "Endereço:", address[position]);
-        printf("%-20s %.2f\n", "Salário:", wage[position]);
+        printf("%-20s %s\n",   "Salário:", wage[position]);
 
         switch(type[position]){
             case 0:
@@ -262,7 +261,7 @@ void seeDatabase(){
     printf("\naddress:\n");
     printStringArray(address, MAX_WORKERS);
     printf("\nwage:\n");
-    printFloatArray(wage, MAX_WORKERS);
+    printStringArray(wage, MAX_WORKERS);
     printf("\ntype:\n");
     printIntArray(type, MAX_WORKERS);
     printf("\nspaceWorkers:\n");

@@ -44,7 +44,7 @@ int main(){
         printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
 
         char userInput[255];
-        gets(userInput);
+        fgets(userInput, 255, stdin);
         choice = atoi(userInput);
         
         switch(choice){

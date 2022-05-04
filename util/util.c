@@ -47,17 +47,6 @@ void printStringArray(char array[][255], int n){
     printf("]\n");
 }
 
-void printFloatArray(float array[], int n){
-    printf("[");
-    for(register int i = 0; i < n; i++){
-        printf("%.2f", array[i]);
-        if(i != n - 1){
-            printf(", ");
-        }
-    }
-    printf("]\n");
-}
-
 void printIntArray(int *array, int n){
     printf("[");
     for(register int i = 0; i < n; i++){
@@ -141,7 +130,8 @@ char* removeTrailingAndLeadingSpaces(char* string){
     for(register int k = i; k < strlen(string) - j; k++){
         newString[k - i] = string[k];
     }
-    newString[strlen(string) - j] = '\0';
+    newString[strlen(string) - j -1] = '\0';
+    printf("newString {%s}", newString);
     return newString;
 }
 
@@ -184,7 +174,7 @@ char* getMandatoryStringFieldFromUserInput(char* field, char msg[]){
     char* sanitizedString;
     do {
         sanitizedString = getStringFieldFromUserInput(field, msg);
-    } while (sanitizedString[0] == '\n');
+    } while (strcmp(sanitizedString,"") == 0);
     return sanitizedString;
 }
 
@@ -208,21 +198,16 @@ int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]){
 // get a string field from the user
 char* getStringFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    gets(field);
+    fgets(field, 255, stdin);
     return removeTrailingAndLeadingSpaces(field);
 }
 
 int getIntegerFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    gets(field);
+    fgets(field, 255, stdin);
     return atoi(field); 
 }
 
-float getFloatFieldFromUserInput(char* field, char msg[]){
-    printf("\n%s\n", msg);
-    gets(field);
-    return atof(field);
-}
 
 int getFirstVacantIndex(bool array[], int n){
     for(register int i = 0; i < n; i++){
