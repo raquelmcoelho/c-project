@@ -61,17 +61,6 @@ bool alterServer(int position){
             break;
     }
 
-    printStringArray(workerRegistrationNumber, MAX_WORKERS);
-    printStringArray(siape, MAX_WORKERS);
-    printStringArray(cpf, MAX_WORKERS);
-    printStringArray(name, MAX_WORKERS);
-    printStringArray(birthday, MAX_WORKERS);
-    printStringArray(rg, MAX_WORKERS);
-    printStringArray(address, MAX_WORKERS);
-    printIntArray(wage, MAX_WORKERS);
-    printIntArray(type, MAX_WORKERS);
-    printBoolArray(spaceWorkers, MAX_WORKERS);
-
     printf("\nCODIGO: %s", newWorkerRegistrationNumber) ;  
     printf("\nSIAPE: %s", newSiape) ;  
     printf("\nCPF: %s", newCpf) ;  
@@ -83,13 +72,12 @@ bool alterServer(int position){
     printf("\nTIPO ENUM: %d", newType) ;  
 
 
-    // Check if already exists registration number, cpf, siape and rg
+    // Check if already exists registration number, cpf and siape
     if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1)){ //} && (checkExists(newRg, 4) == -1)){
         if(position == -1){
             char positionChar[255];
             do {
                 position = getMandatoryIntegerFieldFromUserInput(positionChar, "Insira a posição desejada para armazenar os dados [1 a 20]:") - 1;
-                printf("\nPOSICAO: %d\n", position);
             } while (!(position < MAX_WORKERS && position >= 0));
         } 
 
@@ -222,13 +210,13 @@ void printAtPosition(int position){
 
         printf("\nPosição %d\n", position + 1);
 
-        printf("%-20s %s\n", "Código do servidor:", workerRegistrationNumber[position]);
-        printf("%-20s %s\n", "SIAPE:", siape[position]);
-        printf("%-20s %s\n", "CPF:", cpf[position]);
-        printf("%-20s %s\n", "Nome:", name[position]);
-        printf("%-20s %s\n", "Data de Nascimento:", birthday[position]);
-        printf("%-20s %s\n", "RG:", rg[position]);
-        printf("%-20s %s\n", "Endereço:", address[position]);
+        printf("%-20s %s\n",   "Código do servidor:", workerRegistrationNumber[position]);
+        printf("%-20s %s\n",   "SIAPE:", siape[position]);
+        printf("%-20s %s\n",   "CPF:", cpf[position]);
+        printf("%-20s %s\n",   "Nome:", name[position]);
+        printf("%-20s %s\n",   "Data de Nascimento:", birthday[position]);
+        printf("%-20s %s\n",   "RG:", rg[position]);
+        printf("%-20s %s\n",   "Endereço:", address[position]);
         printf("%-20s %.2f\n", "Salário:", wage[position]);
 
         switch(type[position]){
@@ -255,4 +243,27 @@ void initializeWorkerColumns(){
     for(register int i = 0; i < MAX_WORKERS; i++){
         deleteServer(i);
     }
+}
+
+void seeDatabase(){
+    printf("\nworkerRegistrationNumber:\n");
+    printStringArray(workerRegistrationNumber, MAX_WORKERS);
+    printf("\nsiape:\n");
+    printStringArray(siape, MAX_WORKERS);
+    printf("\ncpf:\n");
+    printStringArray(cpf, MAX_WORKERS);
+    printf("\nname:\n");
+    printStringArray(name, MAX_WORKERS);
+    printf("\nbirthday:\n");
+    printStringArray(birthday, MAX_WORKERS);
+    printf("\nrg:\n");
+    printStringArray(rg, MAX_WORKERS);
+    printf("\naddress:\n");
+    printStringArray(address, MAX_WORKERS);
+    printf("\nwage:\n");
+    printIntArray(wage, MAX_WORKERS);
+    printf("\ntype:\n");
+    printIntArray(type, MAX_WORKERS);
+    printf("\nspaceWorkers:\n");
+    printBoolArray(spaceWorkers, MAX_WORKERS);
 }

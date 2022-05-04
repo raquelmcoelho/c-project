@@ -158,7 +158,6 @@ int findSpace(bool array[], int n){
 int findStringInArray(char array[][255], int n, char string[]){
     for(register int i = 0; i < n; i++){
         if(strcmp(array[i], string) == 0 ){
-            printf("\nstring1 %s e string2 %s e foi achado na posicao %d", array[i], string, i);
             return i;
         }
     }
@@ -202,31 +201,26 @@ int getMandatoryIntegerFieldFromUserInput(char* field, char msg[]){
     do {
         integer = getIntegerFieldFromUserInput(field, msg);
     } while (integer == 0);
-    // TODO: isso impede de inserir o numero 0
     return integer; 
 }
 
 // get a string field from the user
 char* getStringFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    // fgets(field, 255, stdin);
     gets(field);
     return removeTrailingAndLeadingSpaces(field);
 }
 
 int getIntegerFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    // fgets(field, 255, stdin);
     gets(field);
     return atoi(field); 
 }
 
 float getFloatFieldFromUserInput(char* field, char msg[]){
     printf("\n%s\n", msg);
-    // fgets(field, 255, stdin);
     gets(field);
     return atof(field);
-    // TODO: fiz errors by \n
 }
 
 int getFirstVacantIndex(bool array[], int n){
@@ -240,12 +234,9 @@ int getFirstVacantIndex(bool array[], int n){
 
 char* getDivider(){
     char* _line = malloc(sizeof(char) * 255);
-    for(register int i = 0; i < 255; i++){
+    for(register int i = 0; i < 150; i++){
         _line[i] = '-';
     }
     _line[255] = '\0';
     return _line;
 }
-// // sanitizes a string
-// char* sanitizeString(char* string){
-// }

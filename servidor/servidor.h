@@ -59,3 +59,5 @@ bool checkItsComplete(int data);
 void printAtPosition(int position);
 // Facade to initialize columns with null value
 void initializeWorkerColumns();
+// See all database
+void seeDatabase();

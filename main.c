@@ -3,11 +3,11 @@
 #include <locale.h>
 #include <stdbool.h>
 
+// #include "servidor/servidor.h"
 #include "servidor/servidor.c"
 #include "util/util.c"
 #include "veiculo/veiculo.c"
 #include "veiculo/veiculo.h"
-#include "mock/mock.h"
 
 int main(){
     setlocale(LC_ALL, "Portuguese");
@@ -18,13 +18,9 @@ int main(){
     // make sure the database starts empty
     initializeBoolArray(parkingSpaces, MAX_VEHICLES);
     initializeBoolArray(spaceWorkers, MAX_WORKERS);
-    printBoolArray(parkingSpaces, MAX_VEHICLES);
-    printBoolArray(spaceWorkers, MAX_WORKERS);
 
     // initialize columns of each table
     initializeWorkerColumns();
-    // printf("%s\n", generateUUID());
-    // printf("%s\n", sanitizeString(unsanitized_string));
 
     do{
         // menu of options
@@ -48,7 +44,7 @@ int main(){
         printf("%sEntre com o número da sua opção:                                %s\n", cyan, normal);
 
         char userInput[255];
-        fgets(userInput, 255, stdin);
+        gets(userInput);
         choice = atoi(userInput);
         
         switch(choice){
