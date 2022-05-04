@@ -1,6 +1,7 @@
 #include "servidor.h"
 
-// Functions for Workers
+
+
 // - inserir novo servidor --
 bool insertNewServer(){
     int spaceIndex = findSpace(spaceWorkers, MAX_WORKERS);
@@ -261,7 +262,7 @@ void seeDatabase(){
     printf("\naddress:\n");
     printStringArray(address, MAX_WORKERS);
     printf("\nwage:\n");
-    printIntArray(wage, MAX_WORKERS);
+    printFloatArray(wage, MAX_WORKERS);
     printf("\ntype:\n");
     printIntArray(type, MAX_WORKERS);
     printf("\nspaceWorkers:\n");

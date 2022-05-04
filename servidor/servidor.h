@@ -1,5 +1,8 @@
 #include "../util/util.h"
 
+
+// Esse header é para o módulo de servidores
+
 // Obrigatórios
 // código obrigatório do servidor e não podem existir dois códigos repetidos
 char workerRegistrationNumber[MAX_WORKERS][255];

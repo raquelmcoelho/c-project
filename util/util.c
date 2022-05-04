@@ -122,7 +122,8 @@ char* generateUUID(){
         rand() & 0xffff, rand() & 0xffff,
         rand() & 0xffff,
         rand() & 0x0fff | 0x4000,
-        rand() & 0x3fff | 0x8000);
+        rand() & 0x3fff | 0x8000
+    );
     return uuid;
 }
 
