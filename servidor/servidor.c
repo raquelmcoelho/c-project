@@ -4,12 +4,15 @@
 
 // - inserir novo servidor --
 bool insertNewServer(){
+    // get the fisrt vacant space for workers
     int spaceIndex = getFirstVacantIndex(spaceWorkers, MAX_WORKERS);
     
+    // if there is no space, return false
     if(spaceIndex == -1){
         printf("\nNão há espaço disponível!\n");
         return false;
     } else {
+        // use the alter server function to insert the new worker
         if(alterServer(spaceIndex)){            
             return true;
         } else {
@@ -39,10 +42,10 @@ bool alterServer(int position){
     strcpy(newSiape, getMandatoryStringFieldFromUserInput(myVar, "Insira número SIAPE:"));
     strcpy(newCpf, getMandatoryStringFieldFromUserInput(myVar, "Insira seu número de CPF:"));
     strcpy(newName, getMandatoryStringFieldFromUserInput(myVar, "Insira seu Nome:"));
-    strcpy(newBirthday, getMandatoryStringFieldFromUserInput(myVar, "Insira sua data de aniversário"));
+    strcpy(newBirthday, getMandatoryStringFieldFromUserInput(myVar, "Insira sua data de nascimento"));
     strcpy(newRg, getStringFieldFromUserInput(myVar, "(opcional) Insira seu número de RG"));
     strcpy(newAddress, getStringFieldFromUserInput(myVar, "(opcional) Insira seu endereço"));
-    strcpy(newWage, getMandatoryStringFieldFromUserInput(myVar, "(opcional) Insira seu salário"));
+    strcpy(newWage, getStringFieldFromUserInput(myVar, "(opcional) Insira seu salário"));
 
     int typeChoosen = 0;
     typeChoosen = getIntegerFieldFromUserInput(myVar, "(opcional) Insira seu tipo: \n 0 - Nada\n 1- Docente\n 2- Técnico Admnistrativo\nResposta:");
