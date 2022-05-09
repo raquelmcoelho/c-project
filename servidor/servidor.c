@@ -2,7 +2,6 @@
 
 
 
-// - inserir novo servidor --
 bool insertNewServer(){
     // get the fisrt vacant space for workers
     int spaceIndex = getFirstVacantIndex(spaceWorkers, MAX_WORKERS);
@@ -21,7 +20,7 @@ bool insertNewServer(){
     }
 }
 
-// - alterar um servidor existente — 
+// Alter a server/worker getting the new data from user
 bool alterServer(int position){
     // get Mandatory User Data
     char newWorkerRegistrationNumber[255] ;
@@ -30,13 +29,16 @@ bool alterServer(int position){
     char newName[255];
     char newBirthday[255];
 
-    // get Opcional User Data
+    // get Optional User Data
     char newRg[255];
     char newAddress[255];
     char newWage[255];
     TypeWorker newType;
     
+    // Generate a code
     strcpy(newWorkerRegistrationNumber, generateUUID());
+    
+    // Uses myVar to get the input of all fields
     char myVar[255];
     strcpy(myVar, "");
     strcpy(newSiape, getMandatoryStringFieldFromUserInput(myVar, "Insira número SIAPE:"));
@@ -47,6 +49,7 @@ bool alterServer(int position){
     strcpy(newAddress, getStringFieldFromUserInput(myVar, "(opcional) Insira seu endereço"));
     strcpy(newWage, getStringFieldFromUserInput(myVar, "(opcional) Insira seu salário"));
 
+    // Get type enum
     int typeChoosen = 0;
     typeChoosen = getIntegerFieldFromUserInput(myVar, "(opcional) Insira seu tipo: \n 0 - Nada\n 1- Docente\n 2- Técnico Admnistrativo\nResposta:");
     switch(typeChoosen){
@@ -66,6 +69,7 @@ bool alterServer(int position){
 
     // Check if already exists registration number, cpf and siape
     if((checkExists(newWorkerRegistrationNumber, 1) == -1) && (checkExists(newSiape, 2) == -1) && (checkExists(newCpf, 3) == -1)){ //} && (checkExists(newRg, 4) == -1)){
+        // Get a position if it's not defined yet
         if(position == -1){
             char positionChar[255];
             do {
@@ -73,6 +77,8 @@ bool alterServer(int position){
             } while (!(position < MAX_WORKERS && position >= 0));
         } 
 
+        
+        // Inserts each value
         strcpy(workerRegistrationNumber[position], newWorkerRegistrationNumber);
         strcpy(siape[position], newSiape);
         strcpy(cpf[position], newCpf);
@@ -82,7 +88,8 @@ bool alterServer(int position){
         strcpy(address[position], newAddress);
         strcpy(wage[position], newWage);
         type[position] = newType;
-
+        
+        // Set position space to true
         spaceWorkers[position] = 1;
         return true;
     } else {
@@ -91,7 +98,7 @@ bool alterServer(int position){
     }
 }
 
-// - excluir um servidor — 
+
 void deleteServer(int position){
     if(position == -1){
         char positionChar[255];
@@ -100,26 +107,26 @@ void deleteServer(int position){
             printf("%d", position);
         } while (!(position < MAX_WORKERS && position >= 0));
     } 
-
-    strcpy(workerRegistrationNumber[position], "vazio");
-    strcpy(siape[position], "vazio");
-    strcpy(cpf[position], "vazio");
-    strcpy(name[position], "vazio");
-    strcpy(birthday[position], "vazio");
-    strcpy(rg[position], "vazio");
-    strcpy(address[position], "vazio");
-    strcpy(wage[position], "vazio");
+    
+    // Clear all data in that position
+    strcpy(workerRegistrationNumber[position], "");
+    strcpy(siape[position], "");
+    strcpy(cpf[position], "");
+    strcpy(name[position], "");
+    strcpy(birthday[position], "");
+    strcpy(rg[position], "");
+    strcpy(address[position], "");
+    strcpy(wage[position], "");
     type[position] = 0;
 
+    // Set position space to false
     spaceWorkers[position] = 0;
 }
 
-// - mostrar/imprimir dados de um servidor com base no código –
+
 void read(){
     char registrationNumber[255];
     strcpy(registrationNumber, getMandatoryStringFieldFromUserInput(registrationNumber, "Insira o código do servidor a ser lido"));
-    
-    printf("\nServidor de código: {%s}\n", registrationNumber);
     int idWorker = checkExists(registrationNumber, 1);
 
     if(idWorker == -1){
@@ -128,14 +135,15 @@ void read(){
         printAtPosition(idWorker);
     }
 }
-// - mostrar/imprimir todos os servidores -
+
+
 void readAll(){
     for(register int i = 0; i < MAX_WORKERS; i++){
         printAtPosition(i);
     }
 }
 
-// // - mostrar/imprimir todos os servidores em ordem alfabética pelo nome - 
+
 void readAllOrderByName(){
     int indexes[MAX_WORKERS];
     orderPositionsAlphabetically(indexes, name, MAX_WORKERS);
@@ -144,7 +152,8 @@ void readAllOrderByName(){
         printAtPosition(indexes[i]);
     }
 }
-// - mostrar/imprimir todos os professores em ordem alfabética pelo nome -
+
+
 void teacherOrderByName(){
     int indexes[MAX_WORKERS];
     orderPositionsAlphabetically(indexes, name, MAX_WORKERS);
@@ -155,7 +164,8 @@ void teacherOrderByName(){
         }
     }
 }
-// - mostrar/imprimir todos os técnicos administrativos em ordem alfabética pelo nome -
+
+
 void technicianOrderByName(){
     int indexes[MAX_WORKERS];
     orderPositionsAlphabetically(indexes, name, MAX_WORKERS);
@@ -170,9 +180,7 @@ void technicianOrderByName(){
 
 
 
-
-// Auxiliares
-// - checar se existe codidgo, cpf, siape e retornar id da position-
+// Check if the value exists in the column specified and returns the index of where it finds it
 int checkExists(char value[], int columnNumber){
     switch(columnNumber){
         //workerRegistrationNumber
@@ -195,7 +203,7 @@ int checkExists(char value[], int columnNumber){
 }
 
 
-// - print at position -
+// Shows each column in that position
 void printAtPosition(int position){
     if(spaceWorkers[position] == 1){
         printf("\n%s\n", getDivider());
@@ -230,13 +238,14 @@ void printAtPosition(int position){
 }
 
 
-// Facade to initialize columns with null value
+// Initialize columns deleting each position
 void initializeWorkerColumns(){
     for(register int i = 0; i < MAX_WORKERS; i++){
         deleteServer(i);
     }
 }
 
+// Used to see database if it's needed
 void seeDatabase(){
     printf("\nworkerRegistrationNumber:\n");
     printStringArray(workerRegistrationNumber, MAX_WORKERS);
