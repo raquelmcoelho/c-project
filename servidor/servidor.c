@@ -1,7 +1,5 @@
 #include "servidor.h"
 
-
-
 bool insertNewServer(){
     // get the fisrt vacant space for workers
     int spaceIndex = getFirstVacantIndex(spaceWorkers, MAX_WORKERS);
@@ -245,26 +243,3 @@ void initializeWorkerColumns(){
     }
 }
 
-// Used to see database if it's needed
-void seeDatabase(){
-    printf("\nworkerRegistrationNumber:\n");
-    printStringArray(workerRegistrationNumber, MAX_WORKERS);
-    printf("\nsiape:\n");
-    printStringArray(siape, MAX_WORKERS);
-    printf("\ncpf:\n");
-    printStringArray(cpf, MAX_WORKERS);
-    printf("\nname:\n");
-    printStringArray(name, MAX_WORKERS);
-    printf("\nbirthday:\n");
-    printStringArray(birthday, MAX_WORKERS);
-    printf("\nrg:\n");
-    printStringArray(rg, MAX_WORKERS);
-    printf("\naddress:\n");
-    printStringArray(address, MAX_WORKERS);
-    printf("\nwage:\n");
-    printStringArray(wage, MAX_WORKERS);
-    printf("\ntype:\n");
-    printIntArray(type, MAX_WORKERS);
-    printf("\nspaceWorkers:\n");
-    printBoolArray(spaceWorkers, MAX_WORKERS);
-}
