@@ -102,7 +102,6 @@ void deleteServer(int position){
         char positionChar[255];
         do {
             position = getMandatoryIntegerFieldFromUserInput(positionChar, "Insira a posição desejada para deletar os dados [1 a 20]:") - 1;
-            printf("%d", position);
         } while (!(position < MAX_WORKERS && position >= 0));
     } 
     
