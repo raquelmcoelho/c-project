@@ -87,6 +87,27 @@ void _insertVehicleIntoDatabase(VEHICLE vehicle)
   fclose(fp);
 }
 
+int _countStoredStructs()
+{
+  FILE *fp;
+  fp = fopen("vehicle_database.bin", "r+b");
+  fseek(fp, 0L, SEEK_END);
+  int size = ftell(fp);
+  fclose(fp);
+  return size / sizeof(VEHICLE);
+}
+
+void _showVehicleByIndex(int position)
+{
+  FILE *fp;
+  VEHICLE vehicle;
+  fp = fopen("vehicle_database.bin", "r+b");
+  fseek(fp, position * sizeof(VEHICLE), SEEK_SET);
+  fread(&vehicle, sizeof(VEHICLE), 1, fp);
+  _showVehicle(vehicle);
+  fclose(fp);
+}
+
 // create a new vehicle
 void createVehicle()
 {
@@ -164,6 +185,7 @@ void readAllVehicles()
       break;
     if (vehicle.status == 0)
       continue;
+    printf("-----------------------------------------------------\n");
     _showVehicle(vehicle);
   }
 }
@@ -206,4 +228,74 @@ void updateVehicle()
 
 void readVehiclesOfWorkerInAlphabeticalOrder() {}
 
-void readVehiclesInAlphabeticalOrder() {}
+typedef struct int_char_tuple_bit
+{
+  int index;
+  char description[255];
+  int status : 1;
+} tuple3;
+
+void readVehiclesInAlphabeticalOrder()
+{
+  VEHICLE vehicle;
+  tuple3 v[_countStoredStructs()];
+  FILE *fp;
+  int i = 0;
+  fp = fopen("vehicle_database.bin", "rb");
+  if (fp == NULL)
+  {
+    printf("Erro ao abrir o arquivo\n");
+    return;
+  }
+
+  // Read the i-th vehicle
+  // Make a tuple-3 of i, the i-th description and the status
+  // Add the tuple-3 to a list
+  // Sort the list by the second element of the tuple-3
+  // Map the list to the first element of the tuple-3
+  // Such list is the indexes ordered by the description alphabetically
+  // For each index in the list, show the i-th vehicle
+
+  for (int i = 0; i < _countStoredStructs(); i++)
+  {
+
+    if (fread(&vehicle, sizeof(vehicle), 1, fp) != 1)
+      break;
+
+    v[i].index = i;
+    stpcpy(v[i].description, vehicle.description);
+    v[i].status = vehicle.status;
+  }
+
+  // Debug contents of tuples
+  for (int i = 0; i < _countStoredStructs(); i++)
+  {
+  }
+
+  // Bubble sort
+  for (int i = 0; i < _countStoredStructs(); i++)
+  {
+    for (int j = 0; j < _countStoredStructs() - 1; j++)
+    {
+
+      if (strcmp(v[j].description, v[j + 1].description) > 0)
+      {
+
+        tuple3 aux = v[j];
+
+        v[j] = v[j + 1];
+
+        v[j + 1] = aux;
+      }
+    }
+  }
+
+  // For each index in the list, show the i-th vehicle
+  for (int i = 0; i < _countStoredStructs(); i++)
+  {
+    if (v[i].status == 0)
+      continue;
+    printf("-----------------------------------------------------\n");
+    _showVehicleByIndex(v[i].index);
+  }
+}
