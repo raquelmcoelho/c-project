@@ -17,7 +17,11 @@ int main(){
     int choice = 0;
 
     // make sure the database starts empty
-    initializeBoolArray(parkingSpaces, MAX_VEHICLES);
+    if(!fileExists("vehicle_database.bin")){
+        FILE* file = fopen("vehicle_database.bin", "wb");
+        fclose(file);
+    }
+
     initializeBoolArray(spaceWorkers, MAX_WORKERS);
 
     // initialize columns of each table
@@ -86,7 +90,7 @@ int main(){
                 break;
             case 10:
                 // add a vehicle
-                insertVehicle();
+                createVehicle();
                 break;
             case 11:
                 // alter a vehicle

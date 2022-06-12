@@ -2,172 +2,208 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h> /* Função toupper*/
 
-#include "user_input/user_input.c"
-#include "read/read.c"
-#include "veiculo.h" 
+#include "ui/user_input.c"
+#include "crud/read/read.c"
+#include "veiculo.h"
 
+#ifdef DEBUG
+#define DEBUG_PRINTF(...)         \
+  do                              \
+  {                               \
+    fprintf(stderr, __VA_ARGS__); \
+  } while (false)
+#else
+#define DEBUG_PRINTF(...) \
+  do                      \
+  {                       \
+  } while (false)
+#endif
 
+// struct vehicle
 
-// função para inserir um novo veículo
-void insertVehicle(){
-  // declare necessary variables
-  char* description = malloc(255 * sizeof(char));
-  char* licensePlate = malloc(255 * sizeof(char));
-  char* brand = malloc(255 * sizeof(char));
-  char* model = malloc(255 * sizeof(char));
-  char* code = malloc(255 * sizeof(char));
-  char* workerCode = malloc(255 * sizeof(char));
+typedef struct struct_vehicle
+{
+  char licensePlate[255];
+  char description[255];
+  char brand[255];
+  char model[255];
+  char workerCode[255];
+  int status : 1;
+} VEHICLE;
 
-  // get the vehicle data
-  code = generateUUID();
-  workerCode = getWorkerCodeFromUserInput();
-  description = getVehicleDescriptionFromUserInput();
-  licensePlate = getVehicleLicensePlateFromUserInput();
-  brand = getVehicleBrandFromUserInput();
-  model = getVehicleModelFromUserInput();
-  
-  // verify if the worker code provided exists
-  // if it doesn't, print an error message and return
-  if(
-      findStringInArray(workerRegistrationNumber, MAX_WORKERS, workerCode) == -1
-    ){
-    printf("O trabalhador não existe.\n");
-    showBlockingMessage();
+// read all the vehicles on the file vehicle_database.bin,
+// put all of them on a list and return such list
+VEHICLE **_getAllvehicles()
+{
+}
+
+// verify if the binary file of vehicles exists^
+bool fileExists(char *fileName)
+{
+  FILE *file = fopen(fileName, "r");
+  if (file == NULL)
+  {
+    return false;
+  }
+  fclose(file);
+  return true;
+}
+
+/* Lê os dados  de um registro intrduzidos pelo usuário*/
+void _readVehicle(VEHICLE *vehicle)
+{
+  printf("Placa	: ");
+  scanf("%s", &vehicle->licensePlate);
+  printf("Descrição	: ");
+  scanf("%s", &vehicle->description);
+  printf("Marca	: ");
+  scanf("%s", &vehicle->brand);
+  printf("Modelo	: ");
+  scanf("%s", &vehicle->model);
+  printf("Código do Trabalhador	: ");
+  scanf("%s", &vehicle->workerCode);
+  vehicle->status = 1;
+  fflush(stdin);
+}
+
+void _showVehicle(VEHICLE vehicle)
+{
+  printf("Placa: %s\n", vehicle.licensePlate);
+  printf("Descrição: %s\n", vehicle.description);
+  printf("Marca: %s\n", vehicle.brand);
+  printf("Modelo: %s\n", vehicle.model);
+  printf("Código do Trabalhador: %s\n", vehicle.workerCode);
+}
+
+void _insertVehicleIntoDatabase(VEHICLE vehicle)
+{
+  FILE *fp;
+  fp = fopen("vehicle_database.bin", "r+b");
+  fseek(fp, 0L, SEEK_END);
+  if (fwrite(&vehicle, sizeof(vehicle), 1, fp) != 1)
+    printf("Falhou a escrita do registro");
+  fclose(fp);
+}
+
+// create a new vehicle
+void createVehicle()
+{
+  VEHICLE vehicle;
+  // read the vehicle data
+  _readVehicle(&vehicle);
+  // add the vehicle to the database
+  _insertVehicleIntoDatabase(vehicle);
+}
+
+// read vehicle of certain position
+void readVehicleByPosition() {}
+
+void deleteVehicle()
+{
+  VEHICLE vehicle;
+  FILE *fp;
+  long int n_reg;
+  char resp;
+
+  fp = fopen("vehicle_database.bin", "r+b");
+
+  printf("Nº do registro a ser apagado: ");
+  scanf("%ld", &n_reg);
+  fflush(stdin);
+
+  if (fseek(fp, (n_reg - 1) * sizeof(VEHICLE), SEEK_SET) != 0)
+  {
+    printf("Registro Inexistente ou Problemas no Posicionamento!!!");
+    return;
+  }
+  if (fread(&vehicle, sizeof(VEHICLE), 1, fp) != 1)
+  {
+    printf("Problemas na leitura do Registro!!!");
+    return;
+  }
+  if (vehicle.status == 0)
+  {
+    printf("O registro já está apagado!!!\n\n");
     return;
   }
 
-  // verify if the description provided already exists
-  // if it does, print an error message and return
-  if(
-      findStringInArray(descriptionOfEachVehicle, MAX_VEHICLES, description) != -1
-    ){
-    printf("O veículo com essa descrição já existe.\n");
-    showBlockingMessage();
+  printf("\n\nDados Atuais\n\n");
+  _showVehicle(vehicle);
+
+  printf("\n\nApagar o Registro (s/n)???: ");
+  resp = getWillFromUserInput();
+  fflush(stdin);
+  if (toupper(resp) != 'S')
+    return;
+
+  vehicle.status = 0;
+  // Recuar um Registro no Arquivo
+  fseek(fp, -(long)sizeof(VEHICLE), SEEK_CUR);
+  // Reescrever o Registro;
+  fwrite(&vehicle, sizeof(VEHICLE), 1, fp);
+  fflush(fp); /*Despejar os Dados no Disco Rígido*/
+}
+
+// read all vehicles
+void readAllVehicles()
+{
+  VEHICLE vehicle;
+  FILE *fp;
+  fp = fopen("vehicle_database.bin", "rb");
+  if (fp == NULL)
+  {
+    printf("Erro ao abrir o arquivo\n");
     return;
   }
 
-  // get the first free firstFreeIndex in the parking lot
-  int firstFreeIndex = getFirstVacantIndex(parkingSpaces, MAX_VEHICLES);
-
-  strcpy(codeOfEachVehicle[firstFreeIndex], code);
-  strcpy(descriptionOfEachVehicle[firstFreeIndex], description);
-  strcpy(licensePlateOfEachVehicle[firstFreeIndex], licensePlate);
-  strcpy(brandOfEachVehicle[firstFreeIndex], brand);
-  strcpy(modelOfEachVehicle[firstFreeIndex], model);
-  strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[firstFreeIndex], workerCode);
-
-  // mark the position as occupied
-  parkingSpaces[firstFreeIndex] = true;
-
-  // show the vehicle
-  showVehicleByPosition(firstFreeIndex + 1);
-
+  while (1)
+  {
+    if (fread(&vehicle, sizeof(vehicle), 1, fp) != 1)
+      break;
+    if (vehicle.status == 0)
+      continue;
+    _showVehicle(vehicle);
+  }
 }
 
-void readVehicleByPosition(){
-  // get the position from the user
-  int position = getPositionFromUserInput();
-  // show the vehicle
-  showVehicleByPosition(position);
+// update an existing vehicle
+void updateVehicle()
+{
+  VEHICLE vehicle;
+  FILE *fp;
+  long int n_reg;
 
-}
+  fp = fopen("vehicle_database.bin", "r+b");
 
-void readAllVehicles(){
-  // show all vehicles
-  showAllVehicles();
-
-}
-
-// // função para alterar uma veículo existente 
-void updateVehicle(){
-  int position;
-
-  // get the position from the user
-  position = getPositionFromUserInput();
-
-  char answer;
-  printf("Deseja alterar a descrição do veículo? (s/n)\n");
-  answer = getWillFromUserInput();
-  if(answer == 's'){
-    // get the new description from the user
-    char* description = getVehicleDescriptionFromUserInput();
-    // update the description
-    strcpy(descriptionOfEachVehicle[position - 1], description);
+  printf("Nº do registro a ser alterado: ");
+  scanf("%ld", &n_reg);
+  fflush(stdin);
+  if (fseek(fp, (n_reg - 1) * sizeof(VEHICLE), SEEK_SET) != 0)
+  {
+    printf("Registro Inexistente ou Problemas no Posicionamento!!!");
+    return;
   }
 
-  printf("Deseja alterar a marca do veículo? (s/n)\n");
-  answer = getWillFromUserInput();
-  if(answer == 's'){
-    // get the new brand from the user
-    char* brand = getVehicleBrandFromUserInput();
-    // update the brand
-    strcpy(brandOfEachVehicle[position - 1], brand);
+  if (fread(&vehicle, sizeof(VEHICLE), 1, fp) != 1)
+  {
+    printf("Problemas na leitura do Registro!!!");
+    return;
   }
 
-  printf("Deseja alterar o modelo do veículo? (s/n)\n");
-  answer = getWillFromUserInput();
-  if(answer == 's'){
-    // get the new model from the user
-    char* model = getVehicleModelFromUserInput();
-    // update the model
-    strcpy(modelOfEachVehicle[position - 1], model);
-  }
+  printf("\n\nDados Atuais\n\n");
+  _showVehicle(vehicle);
+  printf("\n\nNovos Dados\n\n");
+  _readVehicle(&vehicle);
 
-  printf("Deseja alterar a placa do veículo? (s/n)\n");
-  answer = getWillFromUserInput();
-  if(answer == 's'){
-    // get the new license plate from the user
-    char* licensePlate = getVehicleLicensePlateFromUserInput();
-    // update the license plate
-    strcpy(licensePlateOfEachVehicle[position - 1], licensePlate);
-  }
-
-  printf("Deseja alterar o código do trabalhador responsável pelo veículo? (s/n)\n");
-  answer = getWillFromUserInput();
-  if(answer == 's'){
-    // get the new worker code from the user
-    char* workerCode = getWorkerCodeFromUserInput();
-    // update the worker code
-    strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position - 1], workerCode);
-  }
-
-  // show the vehicle
-  showVehicleByPosition(position);
-
+  // Recuar um Registro no Arquivo
+  fseek(fp, -(long)sizeof(VEHICLE), SEEK_CUR);
+  // Reescrever o Registro;
+  fwrite(&vehicle, sizeof(VEHICLE), 1, fp);
+  fflush(fp); /*Despejar os Dados no Disco Rígido*/
 }
 
-//  função para excluir uma veículo
-void deleteVehicle(){
-  // get the position from the user
-  int position = getPositionFromUserInput();
-  // mark the position as empty
-  parkingSpaces[position - 1] = false;
+void readVehiclesOfWorkerInAlphabeticalOrder() {}
 
-  // clear the data on the corresponding index
-  
-  strcpy(codeOfEachVehicle[position - 1], "");
-  strcpy(descriptionOfEachVehicle[position - 1], "");
-  strcpy(licensePlateOfEachVehicle[position - 1], "");
-  strcpy(brandOfEachVehicle[position - 1], "");
-  strcpy(modelOfEachVehicle[position - 1], "");
-  strcpy(workerRegistrationNumberOfVehicleOfEachVehicle[position - 1], "");
-
-  // show the vehicle
-  showVehicleByPosition(position);
-
-}
-
-void readVehiclesOfWorkerInAlphabeticalOrder(){
-  // get the worker code from the user
-  char* workerCode = getWorkerCodeFromUserInput();
-  // show the vehicles of the worker
-  showVehiclesOfWorkerInAlphabeticalOrder(workerCode);
-
-}
-
-void readVehiclesInAlphabeticalOrder(){
-  // show the vehicles in alphabetical order
-  showVehiclesInAlphabeticalOrder();
-
-}
+void readVehiclesInAlphabeticalOrder() {}

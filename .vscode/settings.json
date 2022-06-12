@@ -2,6 +2,11 @@
     "files.associations": {
         "util.h": "c",
         "stdbool.h": "c",
-        "veiculo.h": "c"
+        "veiculo.h": "c",
+        "stdio.h": "c",
+        "limits": "c",
+        "stdlib.h": "c",
+        "cstdio": "c",
+        "*.tcc": "c"
     }
 }

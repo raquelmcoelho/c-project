@@ -22,7 +22,7 @@ char workerRegistrationNumberOfVehicleOfEachVehicle[MAX_VEHICLES][255];
 
 // função para inserir uma nova veículo
 // void insertVehicle(char vehicleRegistrationNumber[], char description[], char licensePlate[], char brand[], char model[], char workerRegistrationNumber[]);
-void insertVehicle();
+void createVehicle();
 
 // função para alterar uma veículo existente 
 void updateVehicle();
